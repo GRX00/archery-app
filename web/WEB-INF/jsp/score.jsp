@@ -2,12 +2,12 @@
 
 <html>
 <head>
-    <title>Archery points app</title>
-    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <title>ArcheryApp - Score Table</title>
+    <link href="/css/score.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-    <form>
+    <form action="/ScoreTable" method="POST">
         <table>
             <thead>
             <tr>

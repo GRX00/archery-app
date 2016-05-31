@@ -1,0 +1,52 @@
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color:#e0e0e0;
+    width: 25px;
+}
+
+td {
+    width: 50px;
+}
+
+th, td {
+    border: 1px solid;
+    height: 30px;
+}
+
+button {
+    height: 28px;
+}
+
+.A1 {
+    border: none;
+    background-color: inherit;
+}
+
+.cellInput {
+    display:table-cell;
+    width:100%;
+    border: none;
+    text-align: center;
+}
+
+
+/* table cell crossed */
+td.crossed
+{
+    background: linear-gradient(to right top, #ffffff 0%,#ffffff 49.9%,#000000 50%,#000000 51%,#ffffff 51.1%,#ffffff 100%);
+}
+
+/* hide input up-down buttons*/
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/**/

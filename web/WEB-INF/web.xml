@@ -5,6 +5,24 @@
          version="3.1">
 
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index</welcome-file>
     </welcome-file-list>
+
+    <servlet>
+        <servlet-name>indexServlet</servlet-name>
+        <servlet-class>pl.grx.app.arch.IndexServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ScoreServlet</servlet-name>
+        <servlet-class>pl.grx.app.arch.ScoreServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>indexServlet</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ScoreServlet</servlet-name>
+        <url-pattern>/ScoreTable</url-pattern>
+    </servlet-mapping>
 </web-app>
