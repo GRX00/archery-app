@@ -14,7 +14,7 @@
     </servlet>
     <servlet>
         <servlet-name>ScoreServlet</servlet-name>
-        <servlet-class>pl.grx.app.arch.ScoreServlet</servlet-class>
+        <servlet-class>pl.grx.app.arch.score.ScoreServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
