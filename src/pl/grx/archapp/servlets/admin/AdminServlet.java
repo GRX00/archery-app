@@ -1,4 +1,4 @@
-package pl.grx.archapp.servlets;
+package pl.grx.archapp.servlets.admin;
 
 import pl.grx.archapp.CompetitionSingleton;
 
@@ -15,6 +15,6 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         competitionSingleton = CompetitionSingleton.getInstance();
 
-        request.getRequestDispatcher("/WEB-INF/jsp/administration/administration.jsp").forward(request, response);
+        request.getRequestDispatcher(request.getContextPath()+"/WEB-INF/jsp/admin/administration.jsp").forward(request, response);
     }
 }

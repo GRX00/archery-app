@@ -8,9 +8,6 @@
 
 <body>
 
-<%
-    ScoreTable scoreTable = (ScoreTable) request.getAttribute("scoreTable");
-%>
 <table class="container">
     <tr class="container">
         <td class="container">

@@ -1,5 +1,10 @@
-<H1>Nagroda RobinHooda</H1>
-<h3>Data: </h3>
+<%@ page import="pl.grx.archapp.score.ParticipantScoreDisplay" %>
+<%
+    ParticipantScoreDisplay participantScoreDisplay = new ParticipantScoreDisplay(participantId);
+%>
+<h1>Nagroda RobinHooda</h1>
+<h3>Data: <%=participantScoreDisplay.getDate()%>
+</h3>
 <table>
 
     <thead>
@@ -8,6 +13,7 @@
             imię nazwisko
         </td>
         <td colspan="5">
+            <%=participantScoreDisplay.getName()%>
         </td>
     </tr>
     <tr>
@@ -21,36 +27,35 @@
     </thead>
 
     <tbody>
-    <form action="/ScoreTable" method="POST">
+    <form action="/score" method="POST">
+
         <tr>
             <th scope="row" rowspan="2">1</th>
-            <td><input name="Score1" value="<%=scoreTable.getCurrentSeries().getScore(1)%>" type="number"
+            <td><input name="Score1" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 1)%>"
+                       type="number" class="cellInput"/></td>
+            <td><input name="Score2" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 2)%>"
+                       type="number"
                        class="cellInput"/></td>
-            <td><input name="Score2" value="<%=scoreTable.getCurrentSeries().getScore(2)%>" type="number"
-                       class="cellInput"/></td>
-            <td><input name="Score3" value="<%=scoreTable.getCurrentSeries().getScore(3)%>" type="number"
-                       class="cellInput"/></td>
-            <td><%=scoreTable.getCurrentSeries().getFirstRowSum()%>
-            </td>
+            <td><input name="Score3" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 3)%>"
+                       type="number" class="cellInput"/></td>
+            <td><%=participantScoreDisplay.getFirstRowSumForSeries(1)%></td>
             <td colspan="2" class="crossed"/>
         </tr>
         <tr>
-            <td><input name="Score4" value="<%=scoreTable.getCurrentSeries().getScore(4)%>" type="number"
-                       class="cellInput"/></td>
-            <td><input name="Score5" value="<%=scoreTable.getCurrentSeries().getScore(5)%>" type="number"
-                       class="cellInput"/></td>
-            <td><input name="Score6" value="<%=scoreTable.getCurrentSeries().getScore(6)%>" type="number"
-                       class="cellInput"/></td>
-            <td><%=scoreTable.getCurrentSeries().getSecondRowSum()%>
-            </td>
-            <td><%=scoreTable.getCurrentSeries().getSeriesSum()%>
-            </td>
-            <td><%=scoreTable.getAccumulatedSeriesSum(1)%>
-            </td>
+            <td><input name="Score4" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 4)%>"
+                       type="number" class="cellInput"/></td>
+            <td><input name="Score5" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 5)%>"
+                       type="number" class="cellInput"/></td>
+            <td><input name="Score6" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 6)%>"
+                       type="number" class="cellInput"/></td>
+            <td><%=participantScoreDisplay.getSecondRowSumForSeries(1)%></td
+            <td><%=participantScoreDisplay.getSumForSeries(1)%></td>
+            <td><%=participantScoreDisplay.getAccumulatedSumForSeries(1)%></td>
             <td>
                 <button type="submit">Zapisz</button>
             </td>
         </tr>
+
     </form>
     <tr>
         <th scope="row" rowspan="2">2</th>

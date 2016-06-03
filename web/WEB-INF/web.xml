@@ -14,7 +14,11 @@
     </servlet>
     <servlet>
         <servlet-name>adminServlet</servlet-name>
-        <servlet-class>pl.grx.archapp.servlets.AdminServlet</servlet-class>
+        <servlet-class>pl.grx.archapp.servlets.admin.AdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>controlServlet</servlet-name>
+        <servlet-class>pl.grx.archapp.servlets.admin.ControlServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -23,11 +27,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>scoreServlet</servlet-name>
-        <url-pattern>/scoreTable</url-pattern>
+        <url-pattern>/score</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>adminServlet</servlet-name>
         <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controlServlet</servlet-name>
+        <url-pattern>/control</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

@@ -9,17 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class IndexServlet extends HttpServlet {
-    private CompetitionSingleton competitionSingleton;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (CompetitionSingleton.isFirstRun()) {
-            request.getRequestDispatcher("/admin").forward(request, response);
+            request.getRequestDispatcher(request.getContextPath()+"/admin").forward(request, response);
         } else {
-            competitionSingleton = CompetitionSingleton.getInstance();
+            CompetitionSingleton competition = CompetitionSingleton.getInstance();
 
-            request.setAttribute("competition", competitionSingleton);
-            request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
+            request.setAttribute("matsNr", competition.getMatsSize());
+            request.getRequestDispatcher(request.getContextPath()+"/WEB-INF/jsp/index.jsp").forward(request, response);
         }
     }
 }
