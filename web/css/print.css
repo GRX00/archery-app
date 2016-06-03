@@ -1,14 +1,18 @@
 body {
-    height:100%;
-    width:100%;
+    height:297mm;
+    width:210mm;
     margin-left:auto;
     margin-right:auto;
 }
 
 table {
     border-collapse: collapse;
+}
+
+table.container {
     border: none;
     width: 100%;
+    height: 100%;
 }
 
 th {
@@ -26,6 +30,10 @@ th, td {
     height: 30px;
 }
 
+td.container {
+    border: none;
+}
+
 button {
     height: 28px;
 }
@@ -40,10 +48,6 @@ button {
     width:100%;
     border: none;
     text-align: center;
-}
-
-td.container {
-    border: none;
 }
 
 input, textarea, select{

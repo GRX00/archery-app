@@ -1,4 +1,6 @@
-package pl.grx.app.arch.score;
+package pl.grx.archapp.servlets.score;
+
+import pl.grx.archapp.score.ScoreTable;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +52,6 @@ public class ScoreServlet extends HttpServlet {
             index++;
         }
 
-        response.sendRedirect("/ScoreTable?m=1");
+        response.sendRedirect(request.getContextPath()+"/scoreTable?m=1");
     }
 }

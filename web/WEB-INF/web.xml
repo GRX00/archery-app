@@ -4,17 +4,17 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <welcome-file-list>
-        <welcome-file>index</welcome-file>
-    </welcome-file-list>
-
     <servlet>
         <servlet-name>indexServlet</servlet-name>
-        <servlet-class>pl.grx.app.arch.IndexServlet</servlet-class>
+        <servlet-class>pl.grx.archapp.servlets.IndexServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ScoreServlet</servlet-name>
-        <servlet-class>pl.grx.app.arch.score.ScoreServlet</servlet-class>
+        <servlet-name>scoreServlet</servlet-name>
+        <servlet-class>pl.grx.archapp.servlets.score.ScoreServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminServlet</servlet-name>
+        <servlet-class>pl.grx.archapp.servlets.AdminServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -22,7 +22,16 @@
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ScoreServlet</servlet-name>
-        <url-pattern>/ScoreTable</url-pattern>
+        <servlet-name>scoreServlet</servlet-name>
+        <url-pattern>/scoreTable</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminServlet</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
+
 </web-app>

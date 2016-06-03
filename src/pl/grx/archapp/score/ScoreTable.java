@@ -1,18 +1,22 @@
-package pl.grx.app.arch.score;
+package pl.grx.archapp.score;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 
 public class ScoreTable {
+    private Date date;
+    private String Range;
+    private Series[] series;
+    private Integer currentSeries = 0;
+    private int maxSeries;
+
     public ScoreTable() {
         series = new Series[6];
         for (int i = 0; i < 6; i++ ) {
             series[i] = new Series();
         }
     }
-
-    private Series[] series;
-    private Integer currentSeries = 0;
 
     public int getAccumulatedSeriesSum(int tillSeries) {
         int sum = 0;
