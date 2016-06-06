@@ -1,4 +1,4 @@
-package pl.grx.archapp;
+package pl.grx.archapp.model;
 
 public class Mat {
     private String[] participantsPositions = new String[4];

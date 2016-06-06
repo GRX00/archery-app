@@ -7,9 +7,20 @@
 <body>
 
 <div>
-    <form action="control" method="POST">
-        Administration test
-    </form>
+    <fieldset>
+        <form action="control" method="POST">
+            <input type="hidden" name="counter" value="start">
+            <button type="submit">Start</button>
+        </form>
+        <form action="control" method="POST">
+            <input type="hidden" name="counter" value="stop">
+            <button type="submit">Stop</button>
+        </form>
+        <form action="control" method="POST">
+            <input type="hidden" name="counter" value="reset">
+            <button type="submit">Stop & Reset</button>
+        </form>
+    </fieldset>
 </div>
 
 </body>

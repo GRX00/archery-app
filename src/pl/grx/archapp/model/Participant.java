@@ -1,6 +1,7 @@
-package pl.grx.archapp;
+package pl.grx.archapp.model;
 
-import pl.grx.archapp.score.ScoreTable;
+import pl.grx.archapp.utils.Uid;
+import pl.grx.archapp.model.score.ScoreTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ public class Participant {
     private String uid;
     private String name;
     private List<ScoreTable> scoreTables = new ArrayList<>();
+
     private ScoreTable currentRangeScoreTable;
 
     public Participant(String name) {

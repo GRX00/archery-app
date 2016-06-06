@@ -1,8 +1,8 @@
 package pl.grx.archapp.servlets.score;
 
 import pl.grx.archapp.CompetitionSingleton;
-import pl.grx.archapp.Mat;
-import pl.grx.archapp.Participant;
+import pl.grx.archapp.model.Mat;
+import pl.grx.archapp.model.Participant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +30,7 @@ public class ScoreServlet extends HttpServlet {
             address = request.getContextPath()+"/index";
         } else {
             CompetitionSingleton competition = CompetitionSingleton.getInstance();
-            Mat mat = competition.getMat(matNr);
+            Mat mat = competition.getMat(matNr-1);
             address = request.getContextPath()+"/WEB-INF/jsp/score/score.jsp";
             request.setAttribute("participantId1", mat.getParticipantIdOnPosition(1));
             request.setAttribute("participantId2", mat.getParticipantIdOnPosition(2));
@@ -46,24 +46,24 @@ public class ScoreServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        logger.info("doPost triggered");
 
-        int index = 1;
+        int index = 0;
         String matQuery = "";
         Enumeration parameters = request.getParameterNames();
 
-        String participantId = request.getParameter("participantId");
         CompetitionSingleton competition = CompetitionSingleton.getInstance();
-        Participant participant = competition.getParticipant(participantId);
 
         while (parameters.hasMoreElements()) {
             String parameter = parameters.nextElement().toString();
             String parameterValue = request.getParameter(parameter);
-//            logger.info("element: " + parameter + " value: " + parameterValue);
 
             if (parameter.equals("m")) {
                 matQuery = "?m="+request.getParameter("m");
                 continue;
             }
 
+            String participantId = extractParticipantId(parameter);
+            Participant participant = competition.getParticipant(participantId);
+            assert(participant!=null);
             try {
                 Integer score = Integer.parseInt(parameterValue);
                 participant.saveScore(score, index);
@@ -75,5 +75,9 @@ public class ScoreServlet extends HttpServlet {
         }
 
         response.sendRedirect(request.getContextPath()+"/score"+matQuery);
+    }
+
+    private String extractParticipantId(String parameter) {
+        return parameter.substring(parameter.indexOf(':'));
     }
 }

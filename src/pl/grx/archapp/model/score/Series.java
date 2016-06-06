@@ -1,4 +1,4 @@
-package pl.grx.archapp.score;
+package pl.grx.archapp.model.score;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,7 +8,7 @@ public class Series {
     private Boolean sorted = true;
 
     public void put(Integer value, int index) {
-        series[index - 1] = value;
+        series[index] = value;
         sorted = false;
     }
 
@@ -16,7 +16,7 @@ public class Series {
         if (!sorted) {
             sort();
         }
-        return series[index - 1];
+        return series[index];
     }
 
     private void sort() {

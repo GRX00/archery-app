@@ -3,13 +3,14 @@
 
 <head>
     <title>ArcheryApp - Counter</title>
-    <link href="../../css/counter.css" rel="stylesheet" type="text/css">
+    <link href="css/counter.css" rel="stylesheet" type="text/css">
+    <script src="js/counter.js"></script>
 </head>
 
 <body>
-    <div class="container red-bg">
+    <div id="timerContainer" class="timerContainer red-background">
         <div class="centered">
-            <div class="timer">0:00</div>
+            <div id="timer" class="timer">0:00</div>
         </div>
     </div>
 </body>

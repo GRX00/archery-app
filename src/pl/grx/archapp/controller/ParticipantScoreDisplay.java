@@ -1,7 +1,8 @@
-package pl.grx.archapp.score;
+package pl.grx.archapp.controller;
 
 import pl.grx.archapp.CompetitionSingleton;
-import pl.grx.archapp.Participant;
+import pl.grx.archapp.model.Participant;
+import pl.grx.archapp.model.score.ScoreTable;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -17,7 +18,7 @@ public class ParticipantScoreDisplay {
     }
 
     public String getDate() {
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Format formatter = new SimpleDateFormat("dd.MM.yyyy");
         return formatter.format(currentRangeScoreTable.getDate());
     }
 

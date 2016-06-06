@@ -2,19 +2,19 @@ body {
     margin: 0;
 }
 
-.green-bg {
+.green-background {
     background-color: greenyellow;
 }
 
-.yellow-bg {
+.yellow-background {
     background-color: yellow;
 }
 
-.red-bg {
+.red-background {
     background-color: red;
 }
 
-.container {
+.timerContainer {
     width: 100%;
     height: 100%;
     display: table;

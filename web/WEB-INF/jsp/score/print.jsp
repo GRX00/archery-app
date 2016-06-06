@@ -1,4 +1,4 @@
-<%@ page import="pl.grx.archapp.score.ScoreTable" %>
+<%@ page import="pl.grx.archapp.model.score.ScoreTable" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,20 +8,20 @@
 
 <body>
 
-<table class="container">
-    <tr class="container">
-        <td class="container">
+<table class="timerContainer">
+    <tr class="timerContainer">
+        <td class="timerContainer">
             <%@include file="/WEB-INF/jsp/score/inlcude/score-table.jsp" %>
         </td>
-        <td class="container">
+        <td class="timerContainer">
             <%@include file="/WEB-INF/jsp/score/inlcude/score-table.jsp" %>
         </td>
     </tr>
-    <tr class="container">
-        <td class="container">
+    <tr class="timerContainer">
+        <td class="timerContainer">
             <%@include file="/WEB-INF/jsp/score/inlcude/score-table.jsp" %>
         </td>
-        <td class="container">
+        <td class="timerContainer">
             <%@include file="/WEB-INF/jsp/score/inlcude/score-table.jsp" %>
         </td>
     </tr>

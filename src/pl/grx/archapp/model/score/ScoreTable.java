@@ -1,6 +1,6 @@
-package pl.grx.archapp.score;
+package pl.grx.archapp.model.score;
 
-import pl.grx.archapp.Range;
+import pl.grx.archapp.model.Range;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,7 +36,7 @@ public class ScoreTable {
     }
 
     public Integer getScoreForSeriesForPosition(int series, int position) {
-        return getSeries(series).getScore(position);
+        return getSeries(series).getScore(position-1);
     }
 
     public Integer getFirstRowSumForSeries(int series) {

@@ -1,4 +1,6 @@
-<%@ page import="pl.grx.archapp.score.ParticipantScoreDisplay" %>
+<%@ page import="pl.grx.archapp.controller.ParticipantScoreDisplay" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     ParticipantScoreDisplay participantScoreDisplay = new ParticipantScoreDisplay(participantId);
 %>
@@ -31,29 +33,32 @@
 
         <tr>
             <th scope="row" rowspan="2">1</th>
-            <td><input name="Score1" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 1)%>"
-                       type="number" class="cellInput"/></td>
-            <td><input name="Score2" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 2)%>"
-                       type="number"
-                       class="cellInput"/></td>
-            <td><input name="Score3" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 3)%>"
-                       type="number" class="cellInput"/></td>
+            <td><input name="score1:<%=participantId%>"
+                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 1)%>"
+                       type="number" class="cell"/></td>
+            <td><input name="score2"<%=participantId%>
+                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 2)%>"
+                       type="number" class="cell"/></td>
+            <td><input name="score3:<%=participantId%>"
+                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 3)%>"
+                       type="number" class="cell"/></td>
             <td><%=participantScoreDisplay.getFirstRowSumForSeries(1)%></td>
-            <td colspan="2" class="crossed"/>
+            <td><button type="submit">Zapisz</button></td>
+            <%--<td colspan="2" class="crossed"/>--%>
         </tr>
         <tr>
-            <td><input name="Score4" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 4)%>"
-                       type="number" class="cellInput"/></td>
-            <td><input name="Score5" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 5)%>"
-                       type="number" class="cellInput"/></td>
-            <td><input name="Score6" value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 6)%>"
-                       type="number" class="cellInput"/></td>
+            <td><input name="score4:<%=participantId%>"
+                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 4)%>"
+                       type="number" class="cell"/></td>
+            <td><input name="score5:<%=participantId%>"
+                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 5)%>"
+                       type="number" class="cell"/></td>
+            <td><input name="score6:<%=participantId%>"
+                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 6)%>"
+                       type="number" class="cell"/></td>
             <td><%=participantScoreDisplay.getSecondRowSumForSeries(1)%></td
             <td><%=participantScoreDisplay.getSumForSeries(1)%></td>
             <td><%=participantScoreDisplay.getAccumulatedSumForSeries(1)%></td>
-            <td>
-                <button type="submit">Zapisz</button>
-            </td>
         </tr>
 
     </form>

@@ -1,4 +1,4 @@
-<%@ page import="pl.grx.archapp.Mat" %>
+<%@ page import="pl.grx.archapp.model.Mat" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

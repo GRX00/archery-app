@@ -35,14 +35,14 @@ button {
     background-color: inherit;
 }
 
-.cellInput {
+input.cell {
     display:table-cell;
     width:100%;
     border: none;
     text-align: center;
 }
 
-td.container {
+td.timerContainer {
     border: none;
 }
 
