@@ -9,16 +9,16 @@
 <div>
     <fieldset>
         <form action="control" method="POST">
-            <input type="hidden" name="counter" value="start">
+            <input type="hidden" name="series" value="start">
             <button type="submit">Start</button>
         </form>
         <form action="control" method="POST">
-            <input type="hidden" name="counter" value="stop">
+            <input type="hidden" name="series" value="stop">
             <button type="submit">Stop</button>
         </form>
         <form action="control" method="POST">
-            <input type="hidden" name="counter" value="reset">
-            <button type="submit">Stop & Reset</button>
+            <input type="hidden" name="series" value="reset">
+            <button type="submit">Reset</button>
         </form>
     </fieldset>
 </div>

@@ -1,10 +1,7 @@
 package pl.grx.archapp;
 
-import pl.grx.archapp.model.Counter;
-import pl.grx.archapp.model.Ranking;
-import pl.grx.archapp.model.Mat;
-import pl.grx.archapp.model.Participant;
-import pl.grx.archapp.model.Range;
+import pl.grx.archapp.controller.CounterState;
+import pl.grx.archapp.model.*;
 
 import java.util.*;
 
@@ -18,13 +15,12 @@ public class CompetitionSingleton {
 
     private boolean currentSeriesStarted = false;
     private boolean currentSeriesFinished = false;
-    private boolean currentSeriesReady = false;
 
     private Ranking ranking;
 
-    private Counter counter;
-    private static CompetitionSingleton instance = null;
+    private CounterState counterState;
 
+    private static CompetitionSingleton instance = null;
     public static boolean isFirstRun() {
         return instance == null;
     }
@@ -37,14 +33,14 @@ public class CompetitionSingleton {
 
     private CompetitionSingleton() {
         ranking = new Ranking(participants.keySet());
-        counter = new Counter();
+        counterState = new CounterState();
 
         setMatsCount(5);
         setRangesCount(2);
     }
 
-    public Counter getCounter() {
-        return counter;
+    public CounterState getCounterState() {
+        return counterState;
     }
 
     public Ranking getRanking() {
@@ -93,32 +89,31 @@ public class CompetitionSingleton {
         return participants.get(participantId);
     }
 
-    public Counter getCurrentRangeCounter() {
-        return ranges.get(currentRangeIndex).getCounter();
+    public CounterData getCurrentRangeCounterData() {
+        return ranges.get(currentRangeIndex).getCounterData();
     }
 
     public void startSeries() {
-        if (currentSeriesFinished) {
-            if (currentSeriesIndex == getRange(currentRangeIndex).getSeriesCount()) {
+        counterState.startCounter();
+    }
+
+    public void finishSeries() {
+        counterState.finishCounter();
+    }
+
+    public void resetSeries() {
+        if (counterState.isCounterFinished()) {
+            if (currentSeriesIndex == getRange(currentRangeIndex).getSeriesCount() - 1) {
                 currentRangeIndex++;
                 currentSeriesIndex = 0;
                 //TODO: think and fix current Range overflow and open tracks
             } else {
                 currentSeriesIndex++;
             }
-            currentSeriesFinished = false;
         }
-        currentSeriesStarted = true;
-    }
 
-    public void finishSeries() {
-        currentSeriesFinished = true;
-    }
-
-    public void resetSeries() {
-        currentSeriesStarted = false;
-        currentSeriesFinished = false;
-        currentSeriesReady = false;
+        counterState.resetCounter();
+        counterState.setCounter(getCurrentRangeCounterData());
     }
 
     public void setCurrentSeriesIndex(int currentSeriesIndex) {
@@ -127,21 +122,5 @@ public class CompetitionSingleton {
 
     public void setCurrentRangeIndex(Integer currentRangeIndex) {
         this.currentRangeIndex = currentRangeIndex;
-    }
-
-    public void seriesReady() {
-        this.currentSeriesReady = true;
-    }
-
-    public boolean isSeriesStarted() {
-        return currentSeriesStarted;
-    }
-
-    public boolean isSeriesFinished() {
-        return currentSeriesFinished;
-    }
-
-    public boolean isSeriesReady() {
-        return currentSeriesReady;
     }
 }

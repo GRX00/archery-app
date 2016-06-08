@@ -10,15 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.logging.Logger;
 
 public class ScoreServlet extends HttpServlet {
 
-    private static Logger logger = Logger.getLogger("ScoreServlet");
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        logger.info("doGet triggered");
         String address;
         Integer matNr = null;
 
@@ -44,8 +40,6 @@ public class ScoreServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        logger.info("doPost triggered");
-
         int index = 0;
         String matQuery = "";
         Enumeration parameters = request.getParameterNames();

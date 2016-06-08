@@ -7,15 +7,15 @@ public class Range {
     private int seriesCount;
     private ArrowsInSeries arrowsInSeries;
     private Date date;
-    private Counter counter;
+    private CounterData counterData;
 
     public Range(Date date) {
         this.date = date;
         this.description = "";
         this.seriesCount = 6;
         this.arrowsInSeries = ArrowsInSeries.SIX;
-        this.counter = new Counter();
-        counter.setTimer(4, 0);
+        this.counterData = new CounterData();
+        counterData.setTimer(4, 0);
     }
 
     public Date getDate() {
@@ -34,7 +34,7 @@ public class Range {
         return arrowsInSeries;
     }
 
-    public Counter getCounter() {
-        return counter;
+    public CounterData getCounterData() {
+        return counterData;
     }
 }

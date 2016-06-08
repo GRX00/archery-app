@@ -4,88 +4,101 @@
 var COUNTER_SERVLET_URL = "counter";
 
 var timerValues;
+var timer;
 
 var counter;
 var timerCounting = false;
-var timerReady = true;
+var timerReady = false;
 
-// start each 1 second  checking process
-setInterval(process, 1000);
+var singleSound = document.getElementById("singleSound");
+var doubleSound = document.getElementById("doubleSound");
 
-resetTimer();
+setupTimer();
 
-function resetTimer() {
-    stopTimer();
+function setupTimer() {
+    resetTimer(false);
 
+    // start each 1 second  checking process
+    timer = setInterval(process, 1000);
+}
+
+function resetTimer(resetState) {
     ajaxPostCall(COUNTER_SERVLET_URL, "getTimerValues=1", function (response) {
+        stopTimer(false);
         timerValues = JSON.parse(response);
 
-        counter = timerValues.seriesTimeSec + timerValues.prepareTimeSec;
-        timerReady = true;
+        counter = timerValues.currentCounter;
+        if (resetState) {
+            timerReady = true;
+        }
         process();
     });
 }
 
 function startTimer() {
-    // play sound
+    singleSound.play();
     console.log("timer started");
     timerCounting = true;
+    timerReady = false;
 }
 
-function stopTimer() {
+function stopTimer(makeSound) {
     timerCounting = false;
-    // play sound
+    timerReady = false;
+    if (makeSound === true) {
+        singleSound.play();
+    }
     console.log("timer stopped");
     counter = 0;
-    process();
 }
 
 function process() {
-    checkControl();
-
     if (timerValues instanceof Object) {
         var minutes, seconds, time;
+        if (timerCounting === true) {
+            counter--;
+        }
+
         time = counter;
-        if (counter > timerValues.seriesTimeSec) {
+        if (counter >= timerValues.seriesTimeSec) {
             // prepare time
             time -= timerValues.seriesTimeSec;
         }
-
         minutes = ~~(time / 60);
+
         seconds = time % 60;
 
-        updateDisplay(minutes, seconds);
-
         if (timerCounting === true) {
-            if (time === 0) {
-                // make sound
+            if (time === 0 && counter !== 0) {
+                doubleSound.play();
                 console.log("prepare time finished");
             }
 
             if (counter === 0) {
+                stopTimer(true);
                 ajaxPostCall(COUNTER_SERVLET_URL, "finished=1");
+                console.log("time finished");
             }
-
-            counter--;
         }
+
+        updateDisplay(minutes, seconds);
     }
+
+    checkControl();
 }
 
 function checkControl() {
-    var params = "checkControl=1";
-    if (timerCounting===true) {
-        params += "&counting=1";
-    }
-    if (timerReady===true) {
-        params += "&ready=1"
-    }
+    var params = "checkControl=1&counter=" + counter;
     ajaxPostCall(COUNTER_SERVLET_URL, params, function (response) {
-        if (response === "start") {
+        if (response === "start" && timerCounting === false && counter !== 0) {
+            console.log("startTimer response");
             startTimer();
-        } else if (response === "stop") {
-            stopTimer();
-        } else if (response === "reset") {
-            resetTimer();
+        } else if (response === "stop" && timerCounting === true) {
+            console.log("stopTimer response");
+            stopTimer(true);
+        } else if (response === "ready" && timerReady === false) {
+            console.log("ready response");
+            resetTimer(true);
         }
     });
 }
@@ -102,7 +115,7 @@ function updateDisplay(minutes, seconds) {
         colorClass = "red-background";
     } else if (counter <= timerValues.yellowTimeSec) {
         colorClass = "yellow-background";
-    } else if (counter > timerValues.seriesTimeSec) {
+    } else if (counter >= timerValues.seriesTimeSec) {
         colorClass = "red-background";
     } else {
         colorClass = "green-background";

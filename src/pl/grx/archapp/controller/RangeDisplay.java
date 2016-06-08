@@ -2,7 +2,7 @@ package pl.grx.archapp.controller;
 
 import pl.grx.archapp.CompetitionSingleton;
 import pl.grx.archapp.model.ArrowsInSeries;
-import pl.grx.archapp.model.Counter;
+import pl.grx.archapp.model.CounterData;
 import pl.grx.archapp.model.Range;
 
 import java.text.Format;
@@ -11,12 +11,12 @@ import java.text.SimpleDateFormat;
 public class RangeDisplay {
 
     private final Range range;
-    private final Counter counter;
+    private final CounterData counterData;
 
     public RangeDisplay(int rangeNr) {
         CompetitionSingleton competition = CompetitionSingleton.getInstance();
         range = competition.getRange(rangeNr - 1);
-        counter = range.getCounter();
+        counterData = range.getCounterData();
     }
 
     public String getDate() {

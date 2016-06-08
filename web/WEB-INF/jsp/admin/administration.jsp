@@ -5,7 +5,6 @@
 <head>
     <title>ArcheryApp - Administration</title>
     <link href="css/administration.css" rel="stylesheet" type="text/css">
-    <script src="js/administration.js"></script>
 </head>
 
 <body>
@@ -38,13 +37,13 @@
                 </thead>
 
                 <tbody>
-                    <%
-                        for (int rangeNr = 1; rangeNr <= competition.getRangesSize(); rangeNr++) {
-                    %>
-                    <%@include file="/WEB-INF/jsp/admin/include/range-row.jsp" %>
-                    <%
-                        }
-                    %>
+                <%
+                    for (int rangeNr = 1; rangeNr <= competition.getRangesSize(); rangeNr++) {
+                %>
+                <%@include file="/WEB-INF/jsp/admin/include/range-row.jsp" %>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
             <div class="buttonHolder">
@@ -68,13 +67,13 @@
                 </thead>
 
                 <tbody>
-                    <%
-                        for (int rowIndex = 1; rowIndex <= competition.getMatsSize(); rowIndex++) {
-                    %>
-                    <%@include file="/WEB-INF/jsp/admin/include/mats-row.jsp" %>
-                    <%
-                        }
-                    %>
+                <%
+                    for (int rowIndex = 1; rowIndex <= competition.getMatsSize(); rowIndex++) {
+                %>
+                <%@include file="/WEB-INF/jsp/admin/include/mats-row.jsp" %>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
 
@@ -85,5 +84,6 @@
     </form>
 </div>
 
+<script src="js/administration.js"></script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 package pl.grx.archapp.model;
 
-public class Counter {
+public class CounterData {
 
-    int prepareTimeSec;
-    int seriesTimeSec;
-    int yellowTimeSec;
-    int redTimeSec;
+    private int prepareTimeSec;
+    private int seriesTimeSec;
+    private int yellowTimeSec;
+    private int redTimeSec;
 
     public void setTimer(int minutes, int seconds) {
         prepareTimeSec = 10;
