@@ -103,24 +103,51 @@ public class CompetitionSingleton {
 
     public void resetSeries() {
         if (counterState.isCounterFinished()) {
-            if (currentSeriesIndex == getRange(currentRangeIndex).getSeriesCount() - 1) {
-                currentRangeIndex++;
-                currentSeriesIndex = 0;
-                //TODO: think and fix current Range overflow and open tracks
-            } else {
-                currentSeriesIndex++;
-            }
+            nextSeries();
         }
-
         counterState.resetCounter();
         counterState.setCounter(getCurrentRangeCounterData());
     }
 
-    public void setCurrentSeriesIndex(int currentSeriesIndex) {
-        this.currentSeriesIndex = currentSeriesIndex;
+    public int getCurrentRangeIndex() {
+        return currentRangeIndex;
     }
 
-    public void setCurrentRangeIndex(Integer currentRangeIndex) {
-        this.currentRangeIndex = currentRangeIndex;
+    public int getCurrentSeriesIndex() {
+        return currentSeriesIndex;
+    }
+
+    public void nextSeries() {
+        if (currentSeriesIndex < getRange(currentRangeIndex).getSeriesCount() - 1) {
+            currentSeriesIndex++;
+        } else {
+            nextRange();
+        }
+    }
+
+    public void previousSeries() {
+        if (currentSeriesIndex > 0) {
+            currentSeriesIndex--;
+        } else {
+            if (currentRangeIndex > 0) {
+                currentRangeIndex--;
+                currentSeriesIndex = getRange(currentRangeIndex).getSeriesCount() - 1;
+            }
+        }
+    }
+
+    public void nextRange() {
+        if (currentRangeIndex < ranges.size() - 1) {
+            currentRangeIndex++;
+            currentSeriesIndex = 0;
+        }
+    }
+
+    public void previousRange() {
+        if (currentRangeIndex > 0) {
+            currentRangeIndex--;
+            currentSeriesIndex = 0;
+        }
+
     }
 }

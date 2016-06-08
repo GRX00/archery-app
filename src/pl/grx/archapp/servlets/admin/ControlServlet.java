@@ -19,18 +19,21 @@ public class ControlServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CompetitionSingleton competition = CompetitionSingleton.getInstance();
 
-        if (request.getParameter("series").equals("start")) {
+        if (request.getParameter("command").equals("start")) {
             competition.startSeries();
-        } else if (request.getParameter("series").equals("stop")) {
+        } else if (request.getParameter("command").equals("stop")) {
             competition.finishSeries();
-        } else if (request.getParameter("series").equals("reset")) {
+        } else if (request.getParameter("command").equals("reset")) {
             competition.resetSeries();
-        } else if (request.getParameter("series").equals("setup")) {
-            competition.setCurrentSeriesIndex(Integer.valueOf(request.getParameter("SeriesNr")) - 1);
-        } else if (request.getParameter("range").equals("setup")) {
-            competition.setCurrentRangeIndex(Integer.valueOf(request.getParameter("RangeNr")) - 1);
+        } else if (request.getParameter("command").equals("seriesNext")) {
+            competition.nextSeries();
+        } else if (request.getParameter("command").equals("seriesPrevious")) {
+            competition.previousSeries();
+        } else if (request.getParameter("command").equals("rangeNext")) {
+            competition.nextRange();
+        } else if (request.getParameter("command").equals("rangePrevious")) {
+            competition.previousRange();
         }
-
-        request.getRequestDispatcher(request.getContextPath()+"/WEB-INF/jsp/admin/control.jsp").forward(request, response);
+        request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/jsp/admin/control.jsp").forward(request, response);
     }
 }

@@ -1,0 +1,22 @@
+body {
+    margin-top: 20px;
+}
+
+.alignCenter {
+    text-align: center;
+}
+
+.inline {
+    display: inline-flex;
+}
+
+button {
+    font-size: 120px;
+    font-size: 12vw;
+}
+
+span {
+    margin: 0 30px 0 30px;
+    font-size: 120px;
+    font-size: 12vw;
+}
