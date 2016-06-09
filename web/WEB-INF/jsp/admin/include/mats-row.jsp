@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <tr>
     <td>
-        1
+        <%=rowIndex%>
     </td>
     <td colspan="2"></td>
 </tr>
@@ -20,27 +20,39 @@
             <option value=" "></option>
             <option value="Test Test">Test Test</option>
         </select>
-        <input class="cell positionName" type="text" name="1A-name" value="">
+        <input class="cell positionName" type="text" name="<%=rowIndex%>:nameA" value="">
     </td>
 </tr>
 <tr>
     <td></td>
     <td>B</td>
-    <td>
-        <input class="cell" type="text" name="1B-name" value="">
+    <td class="positionNameCell">
+        <select class="cell positionNameDropdown" onchange="setSelectedToInput(this)">
+            <option value=" "></option>
+            <option value="Test Test">Test Test</option>
+        </select>
+        <input class="cell positionName" type="text" name="<%=rowIndex%>:nameB" value="">
     </td>
 </tr>
 <tr>
     <td></td>
     <td>C</td>
-    <td>
-        <input class="cell" type="text" name="1C-name" value="">
+    <td class="positionNameCell">
+        <select class="cell positionNameDropdown" onchange="setSelectedToInput(this)">
+            <option value=" "></option>
+            <option value="Test Test">Test Test</option>
+        </select>
+        <input class="cell positionName" type="text" name="<%=rowIndex%>:nameC" value="">
     </td>
 </tr>
 <tr>
     <td></td>
     <td>D</td>
-    <td>
-        <input class="cell" type="text" name="1D-name" value="">
+    <td class="positionNameCell">
+        <select class="cell positionNameDropdown" onchange="setSelectedToInput(this)">
+            <option value=" "></option>
+            <option value="Test Test">Test Test</option>
+        </select>
+        <input class="cell positionName" type="text" name="<%=rowIndex%>:nameD" value="">
     </td>
 </tr>

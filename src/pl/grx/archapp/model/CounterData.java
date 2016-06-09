@@ -6,12 +6,13 @@ public class CounterData {
     private int seriesTimeSec;
     private int yellowTimeSec;
     private int redTimeSec;
+    private SeriesSequence sequence;
 
     public void setTimer(int minutes, int seconds) {
         prepareTimeSec = 10;
         seriesTimeSec = minutes*60+seconds;
-        yellowTimeSec = (int) Math.ceil(seriesTimeSec * 0.3);
-        redTimeSec = (int) Math.ceil(seriesTimeSec * 0.1);
+        yellowTimeSec = (int) Math.ceil(seriesTimeSec * 0.375);
+        redTimeSec = (int) Math.ceil(seriesTimeSec * 0.125);
     }
 
     public void setPrepareTime(int minutes, int seconds) {
@@ -40,5 +41,13 @@ public class CounterData {
 
     public int getRedTimeSec() {
         return redTimeSec;
+    }
+
+    public void setSequence(SeriesSequence sequence) {
+        this.sequence = sequence;
+    }
+
+    public SeriesSequence getSeriesSequence() {
+        return sequence;
     }
 }

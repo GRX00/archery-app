@@ -13,9 +13,6 @@ public class CompetitionSingleton {
     private int currentRangeIndex = 0;
     private int currentSeriesIndex = 0;
 
-    private boolean currentSeriesStarted = false;
-    private boolean currentSeriesFinished = false;
-
     private Ranking ranking;
 
     private CounterState counterState;
@@ -41,10 +38,6 @@ public class CompetitionSingleton {
 
     public CounterState getCounterState() {
         return counterState;
-    }
-
-    public Ranking getRanking() {
-        return ranking;
     }
 
     public int getMatsSize() {

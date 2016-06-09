@@ -9,7 +9,19 @@ public class CompetitionDisplay {
         return String.valueOf(competition.getRangesSize());
     }
 
+    public int getRangesCountNr() {
+        return competition.getRangesSize();
+    }
+
     public String getMatsCount() {
         return String.valueOf(competition.getMatsSize());
+    }
+
+    public void setRangesCount(String rangesCount) {
+        competition.setRangesCount(Integer.valueOf(rangesCount));
+    }
+
+    public void setMatsCount(String matsCount) {
+        competition.setMatsCount(Integer.valueOf(matsCount));
     }
 }

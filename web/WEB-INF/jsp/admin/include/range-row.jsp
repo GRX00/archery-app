@@ -1,65 +1,80 @@
+<%@ page import="pl.grx.archapp.controller.CounterDataDisplay" %>
 <%@ page import="pl.grx.archapp.controller.RangeDisplay" %>
-<%@ page import="pl.grx.archapp.model.ArrowsInSeries" %>
+<%@ page import="pl.grx.archapp.model.SeriesArrows" %>
+<%@ page import="pl.grx.archapp.model.SeriesSequence" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     RangeDisplay rangeDisplay = new RangeDisplay(rangeNr);
+    CounterDataDisplay counterDisplay = new CounterDataDisplay(rangeDisplay);
 %>
 <tr>
-    <th><%=rangeNr%></th>
+    <th><%=rangeNr%>
+    </th>
     <td><input class="cell" type="text" name="<%=rangeNr%>:date" value="<%=rangeDisplay.getDate()%>"/></td>
-    <td><input class="cell" type="text" name="<%=rangeNr%>:rangeDescription" value="<%=rangeDisplay.getDescription()%>"/></td>
-    <td><input class="cell" type="number" name="<%=rangeNr%>:seriesCount" value="<%=rangeDisplay.getSeriesCount()%>"></td>
+    <td><input class="cell" type="text" name="<%=rangeNr%>:rangeDescription"
+               value="<%=rangeDisplay.getDescription()%>"/></td>
+    <td><input class="cell" type="number" name="<%=rangeNr%>:seriesCount" value="<%=rangeDisplay.getSeriesCount()%>">
+    </td>
     <td>
-        <select name="<%=rangeNr%>:arrowsPerSeries">
-            <% for (ArrowsInSeries arrowsInSeries : ArrowsInSeries.values()) { %>
-            <option value="<%=arrowsInSeries.getValue()%>" <%=rangeDisplay.isSelectedArrowsInSeries(arrowsInSeries)%>>
-                <%=arrowsInSeries.getDescription()%></option>
+        <select name="<%=rangeNr%>:seriesArrows">
+            <% for (SeriesArrows seriesArrows : SeriesArrows.values()) { %>
+            <option value="<%=seriesArrows.getValue()%>" <%=rangeDisplay.isSelectedSeriesArrows(seriesArrows)%>>
+                <%=seriesArrows.getDescription()%>
+            </option>
             <% } %>
         </select>
     </td>
     <td>
         <div class="time">
             <input class="cell" type="number" name="<%=rangeNr%>:seriesTimeMinutes"
-                   value="4" min="0">
+                   value="<%=counterDisplay.getSeriesTimeMinutes()%>" min="0">
             <span>:</span>
             <input class="cell" type="number" name="<%=rangeNr%>:seriesTimeSeconds"
-                   value="00" min="0" max="59" onblur="addTrailingZeroes(this, 2)">
+                   value="<%=counterDisplay.getSeriesTimeSeconds()%>" min="0" max="59"
+                   onblur="addTrailingZeroes(this, 2)">
         </div>
     </td>
     <td>
         <div class="time">
-            <input class="cell" type="number" name="<%=rangeNr%>:beforeSeriesTimeMinutes" value="0"
+            <input class="cell" type="number" name="<%=rangeNr%>:prepareTimeMinutes"
+                   value="<%=counterDisplay.getPrepareTimeMinutes()%>"
                    min="0">
             <span>:</span>
-            <input class="cell" type="number" name="<%=rangeNr%>:beforeSeriesTimeSeconds" value="10"
+            <input class="cell" type="number" name="<%=rangeNr%>:prepareTimeSeconds"
+                   value="<%=counterDisplay.getPrepareTimeSeconds()%>"
                    min="0" max="59" onblur="addTrailingZeroes(this, 2)">
         </div>
     </td>
     <td>
         <div class="time">
-            <input class="cell" type="number" name="<%=rangeNr%>:yellowTimeMinutes" value="1"
+            <input class="cell" type="number" name="<%=rangeNr%>:yellowTimeMinutes"
+                   value="<%=counterDisplay.getYellowTimeMinutes()%>"
                    min="0">
             <span>:</span>
-            <input class="cell" type="number" name="<%=rangeNr%>:yellowTimeSeconds" value="30"
+            <input class="cell" type="number" name="<%=rangeNr%>:yellowTimeSeconds"
+                   value="<%=counterDisplay.getYellowTimeSeconds()%>"
                    min="0" max="59" onblur="addTrailingZeroes(this, 2)">
         </div>
     </td>
     <td>
         <div class="time">
-            <input class="cell" type="number" name="<%=rangeNr%>:redTimeMinutes" value="0"
+            <input class="cell" type="number" name="<%=rangeNr%>:redTimeMinutes"
+                   value="<%=counterDisplay.getRedTimeMinutes()%>"
                    min="0">
             <span>:</span>
-            <input class="cell" type="number" name="<%=rangeNr%>:redTimeSeconds" value="30"
+            <input class="cell" type="number" name="<%=rangeNr%>:redTimeSeconds"
+                   value="<%=counterDisplay.getRedTimeSeconds()%>"
                    min="0" max="59" onblur="addTrailingZeroes(this, 2)">
         </div>
     </td>
     <td>
-        <select name="<%=rangeNr%>:sequence">
-            <option value="A">A</option>
-            <option value="AB/AB" selected>AB/AB</option>
-            <option value="AB/BA">AB/BA</option>
-            <option value="ABC">ABC</option>
+        <select name="<%=rangeNr%>:seriesSequence">
+            <% for (SeriesSequence seriesSequence : SeriesSequence.values()) { %>
+            <option value="<%=seriesSequence.name()%>" <%=counterDisplay.isSelectedSeriesSequence(seriesSequence)%>>
+                <%=seriesSequence.getDescription()%>
+            </option>
+            <% } %>
         </select>
     </td>
 </tr>

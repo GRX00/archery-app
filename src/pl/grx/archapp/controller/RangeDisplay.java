@@ -1,22 +1,27 @@
 package pl.grx.archapp.controller;
 
 import pl.grx.archapp.CompetitionSingleton;
-import pl.grx.archapp.model.ArrowsInSeries;
 import pl.grx.archapp.model.CounterData;
 import pl.grx.archapp.model.Range;
+import pl.grx.archapp.model.SeriesArrows;
 
+import java.io.IOException;
+import java.text.DateFormat;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class RangeDisplay {
 
     private final Range range;
-    private final CounterData counterData;
 
     public RangeDisplay(int rangeNr) {
         CompetitionSingleton competition = CompetitionSingleton.getInstance();
         range = competition.getRange(rangeNr - 1);
-        counterData = range.getCounterData();
+    }
+
+    public CounterData getCounterData() {
+        return range.getCounterData();
     }
 
     public String getDate() {
@@ -32,11 +37,32 @@ public class RangeDisplay {
         return String.valueOf(range.getSeriesCount());
     }
 
-    public String isSelectedArrowsInSeries(ArrowsInSeries arrowsInSeries) {
-        if (range.getArrowsInSeries() == arrowsInSeries) {
+    public String isSelectedSeriesArrows(SeriesArrows seriesArrows) {
+        if (range.getArrowsInSeries() == seriesArrows.getValue()) {
             return "selected";
         } else {
             return "";
         }
+    }
+
+    public void setDate(String date) throws IOException {
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            range.setDate(format.parse(date));
+        } catch (ParseException ex) {
+            throw new IOException(ex);
+        }
+    }
+
+    public void setDescription(String description) {
+        range.setDescription(description);
+    }
+
+    public void setSeriesCount(String seriesCount) {
+        range.setSeriesCount(Integer.valueOf(seriesCount));
+    }
+
+    public void setArrowsInSeries(String arrowsInSeries) {
+        range.setArrowsInSeries(Integer.valueOf(arrowsInSeries));
     }
 }
