@@ -103,12 +103,18 @@
 <table>
     <tbody>
     <tr>
-        <td></td>
-        <td></td>
+        <td class="signature signatureBreak"></td>
+        <td class="signature"></td>
+        <td class="signature signatureBreak"></td>
+        <td class="signature"></td>
+        <td class="signature signatureBreak"></td>
     </tr>
     <tr>
-        <td>Zawodnik</td>
-        <td>Sędzia</td>
+        <td class="signature signatureBreak"></td>
+        <td class="signature signatureLabel">Zawodnik</td>
+        <td class="signature signatureBreak"></td>
+        <td class="signature signatureLabel">Sędzia</td>
+        <td class="signature signatureBreak"></td>
     </tr>
     </tbody>
 </table>

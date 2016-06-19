@@ -28,6 +28,7 @@ th, td {
 
 button {
     height: 28px;
+    width: 100%;
 }
 
 .A1 {
@@ -56,6 +57,21 @@ input, textarea, select{
     font-style: inherit;
 }
 
+.signature {
+    border: none;
+    width: 45%;
+    padding: 0;
+}
+
+.signatureBreak {
+    width: auto;
+}
+
+.signatureLabel {
+    border-top: dotted 1px;
+    width: 40%;
+    border-left: transparent;
+}
 /* table cell crossed */
 td.crossed
 {
@@ -66,7 +82,6 @@ td.crossed
 input[type='number'] {
     -moz-appearance:textfield;
 }
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
