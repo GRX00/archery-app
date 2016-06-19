@@ -12,8 +12,8 @@ public class ParticipantScoreDisplay {
     private final Participant participant;
     private final ScoreTable currentRangeScoreTable;
 
-    public ParticipantScoreDisplay(String participantId) {
-        participant = competition.getParticipant(participantId);
+    public ParticipantScoreDisplay(String participantName) {
+        participant = competition.getParticipant(participantName);
         currentRangeScoreTable = participant.getCurrentRangeScoreTable();
     }
 
@@ -22,12 +22,9 @@ public class ParticipantScoreDisplay {
         return formatter.format(currentRangeScoreTable.getDate());
     }
 
-    public String getName() {
-        return participant.getName();
-    }
-
     public String getScoreForSeriesForPosition(int series, int position) {
         return String.valueOf(currentRangeScoreTable.getScoreForSeriesForPosition(series, position));
+
     }
 
     public String getFirstRowSumForSeries(int series) {
@@ -44,5 +41,13 @@ public class ParticipantScoreDisplay {
 
     public String getAccumulatedSumForSeries(int series) {
         return String.valueOf(currentRangeScoreTable.getAccumulatedSeriesSum(series));
+    }
+
+    public int getCurrentSeriesNr() {
+        return currentRangeScoreTable.getCurrentSeriesIndex() + 1;
+    }
+
+    public int getSeriesCount() {
+        return currentRangeScoreTable.getSeriesCount();
     }
 }

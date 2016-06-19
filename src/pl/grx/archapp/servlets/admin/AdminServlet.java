@@ -51,6 +51,21 @@ public class AdminServlet extends HttpServlet {
             counterDisplay.setSequence(request.getParameter(paramName.concat("seriesSequence")));
         }
 
+        for (int matNr = 1; matNr <= competitionDisplay.getMatsCountNr(); matNr++) {
+            String paramName = String.valueOf(matNr) + ":name";
+
+            competitionDisplay.setParticipantPosition(matNr, 0,
+                    request.getParameter(paramName.concat("A")));
+            competitionDisplay.setParticipantPosition(matNr, 1,
+                    request.getParameter(paramName.concat("B")));
+            competitionDisplay.setParticipantPosition(matNr, 2,
+                    request.getParameter(paramName.concat("C")));
+            competitionDisplay.setParticipantPosition(matNr, 3,
+                    request.getParameter(paramName.concat("D")));
+        }
+
+        competitionDisplay.setupParticipants();
+
         competitionDisplay.setRangesCount(request.getParameter("rangesNr"));
 
         competitionDisplay.setMatsCount(request.getParameter("matsNr"));

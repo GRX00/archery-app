@@ -2,20 +2,19 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    ParticipantScoreDisplay participantScoreDisplay = new ParticipantScoreDisplay(participantId);
+    ParticipantScoreDisplay participantScoreDisplay = new ParticipantScoreDisplay(participantName);
 %>
 <h1>Nagroda RobinHooda</h1>
 <h3>Data: <%=participantScoreDisplay.getDate()%>
 </h3>
 <table>
-
     <thead>
     <tr>
         <td colspan="2" class="smallLabel">
             imię nazwisko
         </td>
         <td colspan="5">
-            <%=participantScoreDisplay.getName()%>
+            <%=participantName%>
         </td>
     </tr>
     <tr>
@@ -29,128 +28,73 @@
     </thead>
 
     <tbody>
-    <form action="/score" method="POST">
+    <%
+        for (int i = 1; i <= participantScoreDisplay.getCurrentSeriesNr(); i++) {
+    %>
+    <tr>
+        <th scope="row" rowspan="2"><%=i%>
+        </th>
+        <td><input name="score%1:<%=participantName%>"
+                   value="<%=participantScoreDisplay.getScoreForSeriesForPosition(i, 1)%>"
+                   type="number" class="cell" min="0" max="11" tabindex=<%=metricNumber%>1/></td>
+        <td><input name="score%2:<%=participantName%>"
+                   value="<%=participantScoreDisplay.getScoreForSeriesForPosition(i, 2)%>"
+                   type="number" class="cell" min="0" max="11" tabindex=<%=metricNumber%>2/></td>
+        <td><input name="score%3:<%=participantName%>"
+                   value="<%=participantScoreDisplay.getScoreForSeriesForPosition(i, 3)%>"
+                   type="number" class="cell" min="0" max="11" tabindex=<%=metricNumber%>3/></td>
+        <td><%=participantScoreDisplay.getFirstRowSumForSeries(i)%>
+        </td>
+        <td colspan="2">
+            <input type="hidden" name="m" value="<%=matNr%>">
+            <button type="submit" tabindex=<%=metricNumber%>7>Zapisz</button>
+        </td>
+    </tr>
+    <tr>
+        <td><input name="score%4:<%=participantName%>"
+                   value="<%=participantScoreDisplay.getScoreForSeriesForPosition(i, 4)%>"
+                   type="number" class="cell" min="0" max="11" tabindex=<%=metricNumber%>4/></td>
+        <td><input name="score%5:<%=participantName%>"
+                   value="<%=participantScoreDisplay.getScoreForSeriesForPosition(i, 5)%>"
+                   type="number" class="cell" min="0" max="11" tabindex=<%=metricNumber%>5/></td>
+        <td><input name="score%6:<%=participantName%>"
+                   value="<%=participantScoreDisplay.getScoreForSeriesForPosition(i, 6)%>"
+                   type="number" class="cell" min="0" max="11" tabindex=<%=metricNumber%>6/></td>
+        <td><%=participantScoreDisplay.getSecondRowSumForSeries(i)%>
+        </td>
+        <td><%=participantScoreDisplay.getSumForSeries(i)%>
+        </td>
+        <td><%=participantScoreDisplay.getAccumulatedSumForSeries(i)%>
+        </td>
+    </tr>
+    <%
+        }
 
-        <tr>
-            <th scope="row" rowspan="2">1</th>
-            <td><input name="score1:<%=participantId%>"
-                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 1)%>"
-                       type="number" class="cell"/></td>
-            <td><input name="score2"<%=participantId%>
-                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 2)%>"
-                       type="number" class="cell"/></td>
-            <td><input name="score3:<%=participantId%>"
-                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 3)%>"
-                       type="number" class="cell"/></td>
-            <td><%=participantScoreDisplay.getFirstRowSumForSeries(1)%></td>
-            <td><button type="submit">Zapisz</button></td>
-            <%--<td colspan="2" class="crossed"/>--%>
-        </tr>
-        <tr>
-            <td><input name="score4:<%=participantId%>"
-                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 4)%>"
-                       type="number" class="cell"/></td>
-            <td><input name="score5:<%=participantId%>"
-                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 5)%>"
-                       type="number" class="cell"/></td>
-            <td><input name="score6:<%=participantId%>"
-                       value="<%=participantScoreDisplay.getScoreForSeriesForPosition(1, 6)%>"
-                       type="number" class="cell"/></td>
-            <td><%=participantScoreDisplay.getSecondRowSumForSeries(1)%></td
-            <td><%=participantScoreDisplay.getSumForSeries(1)%></td>
-            <td><%=participantScoreDisplay.getAccumulatedSumForSeries(1)%></td>
-        </tr>
-
-    </form>
+        for (int i = (participantScoreDisplay.getCurrentSeriesNr() + 1); i <= participantScoreDisplay.getSeriesCount(); i++) {
+    %>
     <tr>
-        <th scope="row" rowspan="2">2</th>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <th scope="row" rowspan="2"><%=i%></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="2" class="crossed"/>
     </tr>
     <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
-    <tr>
-        <th scope="row" rowspan="2">3</th>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th scope="row" rowspan="2">4</th>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th scope="row" rowspan="2">5</th>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th scope="row" rowspan="2">6</th>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
+    <%
+        }
+    %>
     <tr>
         <td colspan="4" class="A1"/>
         <th colspan="2">Razem</th>
-        <td/>
+        <td><%=participantScoreDisplay.getAccumulatedSumForSeries(participantScoreDisplay.getSeriesCount())%></td>
     </tr>
 
     </tbody>
@@ -159,8 +103,8 @@
 <table>
     <tbody>
     <tr>
-        <td/>
-        <td/>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
         <td>Zawodnik</td>

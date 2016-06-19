@@ -36,7 +36,7 @@ function resetTimer(resetState) {
 }
 
 function startTimer() {
-    singleSound.play();
+    doubleSound.play();
     console.log("timer started");
     timerCounting = true;
     timerReady = false;
@@ -70,7 +70,7 @@ function process() {
 
         if (timerCounting === true) {
             if (time === 0 && counter !== 0) {
-                doubleSound.play();
+                singleSound.play();
                 console.log("prepare time finished");
             }
 

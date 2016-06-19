@@ -1,5 +1,3 @@
-<%@ page import="pl.grx.archapp.CompetitionSingleton" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -9,54 +7,61 @@
 
 <body>
 <%
-    String participantId;
-    CompetitionSingleton competition = CompetitionSingleton.getInstance();
+    String participantName;
+    String matNr = (String) request.getAttribute("m");
+    int metricNumber = 0;
 %>
-<table class="timerContainer">
-    <tr>
-        <td class="timerContainer">
-            <%
-                participantId = (String) request.getAttribute("participantId1");
-                if (participantId != null) {
-            %>
-            <%@include file="/WEB-INF/jsp/score/include/score-table.jsp" %>
-            <%
-                }
-            %>
-        </td>
-        <td class="timerContainer">
-            <%
-                participantId = (String) request.getAttribute("participantId2");
-                if (participantId != null) {
-            %>
-            <%@include file="/WEB-INF/jsp/score/include/score-table.jsp" %>
-            <%
-                }
-            %>
-        </td>
-    </tr>
-    <tr>
-        <td class="timerContainer">
-            <%
-                participantId = (String) request.getAttribute("participantId3");
-                if (participantId != null) {
-            %>
-            <%@include file="/WEB-INF/jsp/score/include/score-table.jsp" %>
-            <%
-                }
-            %>
-        </td>
-        <td class="timerContainer">
-            <%
-                participantId = (String) request.getAttribute("participantId4");
-                if (participantId != null) {
-            %>
-            <%@include file="/WEB-INF/jsp/score/include/score-table.jsp" %>
-            <%
-                }
-            %>
-        </td>
-    </tr>
-</table>
+<form action="/score" method="POST">
+    <table>
+        <tr>
+            <td class="A1">
+                <%
+                    participantName = (String) request.getAttribute("participantNameA");
+                    metricNumber = 1;
+                    if (participantName != null) {
+                %>
+                <%@include file="/WEB-INF/jsp/score/include/score-table.jsp" %>
+                <%
+                    }
+                %>
+            </td>
+            <td class="A1">
+                <%
+                    participantName = (String) request.getAttribute("participantNameB");
+                    metricNumber = 2;
+                    if (participantName != null) {
+                %>
+                <%@include file="/WEB-INF/jsp/score/include/score-table.jsp" %>
+                <%
+                    }
+                %>
+            </td>
+        </tr>
+        <tr>
+            <td class="A1">
+                <%
+                    participantName = (String) request.getAttribute("participantNameC");
+                    metricNumber = 3;
+                    if (participantName != null) {
+                %>
+                <%@include file="/WEB-INF/jsp/score/include/score-table.jsp" %>
+                <%
+                    }
+                %>
+            </td>
+            <td class="A1">
+                <%
+                    participantName = (String) request.getAttribute("participantNameD");
+                    metricNumber = 4;
+                    if (participantName != null) {
+                %>
+                <%@include file="/WEB-INF/jsp/score/include/score-table.jsp" %>
+                <%
+                    }
+                %>
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

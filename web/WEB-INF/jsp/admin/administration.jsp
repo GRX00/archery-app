@@ -1,18 +1,20 @@
 <%@ page import="pl.grx.archapp.controller.CompetitionDisplay" %>
-<%@ page import="pl.grx.archapp.CompetitionSingleton" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>ArcheryApp - Administration</title>
     <link href="css/administration.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/lib/awesomplete.css"/>
 </head>
+
+
 
 <body>
 <%
-    CompetitionSingleton competition = CompetitionSingleton.getInstance();
     CompetitionDisplay competitionDisplay = new CompetitionDisplay();
 %>
-<div>
+<div id="clickCather" hidden onclick="hideAllLists()"></div>
+<div class="container">
     <form action="admin" method="POST">
         <fieldset>
             <div>
@@ -38,7 +40,7 @@
 
                 <tbody>
                 <%
-                    for (int rangeNr = 1; rangeNr <= competition.getRangesSize(); rangeNr++) {
+                    for (int rangeNr = 1; rangeNr <= competitionDisplay.getRangesCountNr(); rangeNr++) {
                 %>
                 <%@include file="/WEB-INF/jsp/admin/include/range-row.jsp" %>
                 <%
@@ -68,7 +70,7 @@
 
                 <tbody>
                 <%
-                    for (int rowIndex = 1; rowIndex <= competition.getMatsSize(); rowIndex++) {
+                    for (int rowNr = 1; rowNr <= competitionDisplay.getMatsCountNr(); rowNr++) {
                 %>
                 <%@include file="/WEB-INF/jsp/admin/include/mats-row.jsp" %>
                 <%
@@ -84,6 +86,9 @@
     </form>
 </div>
 
+<%--<script type="text/javascript">--%>
+    <%--var participants = JSON.parse('<%=competitionDisplay.getParticipantsJSON()%>');--%>
+<%--</script>--%>
 <script src="js/administration.js"></script>
 </body>
 </html>

@@ -1,15 +1,20 @@
 package pl.grx.archapp.model;
 
 public class Mat {
-    private String[] participantsPositions = new String[4];
+    private Participant[] participantOnPosition = new Participant[4];
 
-    public void setParticipant(Participant participant, int position) {
-        assert (position > 0 && position < 5);
-        participantsPositions[position-1] = participant.getId();
+    public void setParticipant(int positionIndex, Participant participant) {
+        assert (positionIndex >= 0 && positionIndex < 4);
+        participantOnPosition[positionIndex] = participant;
     }
 
-    public String getParticipantIdOnPosition(int position) {
-        assert (position > 0 && position < 5);
-        return participantsPositions[position-1];
+    public String getParticipant(int positionIndex) {
+        assert (positionIndex >= 0 && positionIndex < 4);
+        Participant participant = participantOnPosition[positionIndex];
+        if (participant == null) {
+            return null;
+        } else {
+            return participant.getName();
+        }
     }
 }

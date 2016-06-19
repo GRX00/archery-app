@@ -3,12 +3,14 @@ package pl.grx.archapp;
 import pl.grx.archapp.controller.CounterState;
 import pl.grx.archapp.model.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class CompetitionSingleton {
     private List<Range> ranges = new ArrayList<>();
     private List<Mat> mats = new ArrayList<>();
-    private Map<String, Participant> participants = new HashMap<>();
+    private List<Participant> participants = new ArrayList<>();
 
     private int currentRangeIndex = 0;
     private int currentSeriesIndex = 0;
@@ -18,6 +20,7 @@ public class CompetitionSingleton {
     private CounterState counterState;
 
     private static CompetitionSingleton instance = null;
+
     public static boolean isFirstRun() {
         return instance == null;
     }
@@ -29,7 +32,7 @@ public class CompetitionSingleton {
     }
 
     private CompetitionSingleton() {
-        ranking = new Ranking(participants.keySet());
+        ranking = new Ranking(participants);
         counterState = new CounterState();
 
         setMatsCount(5);
@@ -78,8 +81,13 @@ public class CompetitionSingleton {
         return ranges.get(index);
     }
 
-    public Participant getParticipant(String participantId) {
-        return participants.get(participantId);
+    public Participant getParticipant(String name) {
+        for (Participant participant : participants) {
+            if (participant.nameEquals(name)) {
+                return participant;
+            }
+        }
+        return null;
     }
 
     public CounterData getCurrentRangeCounterData() {
@@ -142,5 +150,53 @@ public class CompetitionSingleton {
             currentSeriesIndex = 0;
         }
 
+    }
+
+    public String getParticipant(int matIndex, int positionIndex) {
+        Mat mat = mats.get(matIndex);
+        return mat.getParticipant(positionIndex);
+    }
+
+    public void setParticipant(int matIndex, int positionIndex, String name) {
+        Participant participant = null;
+
+        if (!name.equals("")) {
+            participant = findParticipant(name);
+            if (participant == null) {
+                participant = createParticipant(name);
+            }
+        }
+
+        Mat mat = getMat(matIndex);
+        mat.setParticipant(positionIndex, participant);
+    }
+
+    private Participant findParticipant(String name) {
+        for (Participant participant : participants) {
+            if (participant.getName().equalsIgnoreCase(name)) {
+                return participant;
+            }
+        }
+        return null;
+    }
+
+    private Participant createParticipant(String name) {
+        Participant participant = new Participant(name);
+        participants.add(participant);
+        return participant;
+    }
+
+    public void setupParticipants() {
+        for (Participant participant : participants) {
+            participant.setScoreTables(ranges, currentRangeIndex);
+        }
+    }
+
+    public List<String> getParticipantsNames() {
+        List<String> participantNames = new ArrayList<>();
+        for (Participant participant : participants) {
+            participantNames.add(participant.getName());
+        }
+        return participantNames;
     }
 }

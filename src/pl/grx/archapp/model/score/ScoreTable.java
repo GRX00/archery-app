@@ -2,29 +2,40 @@ package pl.grx.archapp.model.score;
 
 import pl.grx.archapp.model.Range;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class ScoreTable {
-    private List<Series> series = new ArrayList<>();
+    private Series[] series;
     private Series currentSeries;
     private Date date;
 
     public ScoreTable(Range range) {
         this.date = range.getDate();
+        series = new Series[range.getSeriesCount()];
+        for (int i = 0; i < range.getSeriesCount(); i++) {
+            series[i]=new Series(i);
+        }
+        currentSeries = series[0];
     }
 
     public int getAccumulatedSeriesSum(int tillSeries) {
         int sum = 0;
-        for (int i = 0; i < tillSeries-1; i++) {
-            sum += series.get(i).getSeriesSum();
+        for (int i = 0; i < tillSeries; i++) {
+            sum += series[i].getSeriesSum();
         }
         return sum;
     }
 
     public void setCurrentSeries(int seriesIndex) {
-        currentSeries = series.get(seriesIndex);
+        currentSeries = series[seriesIndex];
+    }
+
+    public int getCurrentSeriesIndex() {
+        return currentSeries.getSeriesIndex();
+    }
+
+    public int getSeriesCount() {
+        return this.series.length;
     }
 
     public void saveScore(Integer score, int index) {
@@ -51,8 +62,8 @@ public class ScoreTable {
         return getSeries(series).getSeriesSum();
     }
 
-    private Series getSeries(int series) {
-        assert(series > 0 && series <= this.series.size());
-        return this.series.get(series - 1);
+    private Series getSeries(int seriesNr) {
+        assert(seriesNr > 0 && seriesNr <= this.series.length);
+        return this.series[seriesNr - 1];
     }
 }

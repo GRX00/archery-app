@@ -6,6 +6,15 @@ import java.util.Collections;
 public class Series {
     private Integer[] series = new Integer[6];
     private Boolean sorted = true;
+    private final int seriesIndex;
+
+    public Series(int index) {
+        seriesIndex = index;
+    }
+
+    public int getSeriesIndex() {
+        return seriesIndex;
+    }
 
     public void put(Integer value, int index) {
         series[index] = value;

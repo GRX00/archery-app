@@ -28,10 +28,10 @@ public class ScoreServlet extends HttpServlet {
             CompetitionSingleton competition = CompetitionSingleton.getInstance();
             Mat mat = competition.getMat(matNr-1);
             address = request.getContextPath()+"/WEB-INF/jsp/score/score.jsp";
-            request.setAttribute("participantId1", mat.getParticipantIdOnPosition(1));
-            request.setAttribute("participantId2", mat.getParticipantIdOnPosition(2));
-            request.setAttribute("participantId3", mat.getParticipantIdOnPosition(3));
-            request.setAttribute("participantId4", mat.getParticipantIdOnPosition(4));
+            request.setAttribute("participantNameA", mat.getParticipant(0));
+            request.setAttribute("participantNameB", mat.getParticipant(1));
+            request.setAttribute("participantNameC", mat.getParticipant(2));
+            request.setAttribute("participantNameD", mat.getParticipant(3));
             request.setAttribute("m", String.valueOf(matNr));
         }
 
@@ -40,7 +40,6 @@ public class ScoreServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int index = 0;
         String matQuery = "";
         Enumeration parameters = request.getParameterNames();
 
@@ -55,8 +54,9 @@ public class ScoreServlet extends HttpServlet {
                 continue;
             }
 
-            String participantId = extractParticipantId(parameter);
-            Participant participant = competition.getParticipant(participantId);
+            String participantName = extractParticipantName(parameter);
+            Integer index = extractScoreIndex(parameter);
+            Participant participant = competition.getParticipant(participantName);
             assert(participant!=null);
             try {
                 Integer score = Integer.parseInt(parameterValue);
@@ -64,14 +64,19 @@ public class ScoreServlet extends HttpServlet {
             } catch (NumberFormatException ignored) {
                 participant.saveScore(null, index);
             }
-
-            index++;
         }
 
         response.sendRedirect(request.getContextPath()+"/score"+matQuery);
     }
 
-    private String extractParticipantId(String parameter) {
-        return parameter.substring(parameter.indexOf(':'));
+    private Integer extractScoreIndex(String parameter) {
+        int percentPos = parameter.indexOf('%')+1;
+        int colonPos = parameter.indexOf(':');
+        return Integer.parseInt(parameter.substring(percentPos, colonPos)) - 1;
+    }
+
+    private String extractParticipantName(String parameter) {
+        int colonPos = parameter.indexOf(':')+1;
+        return parameter.substring(colonPos);
     }
 }
