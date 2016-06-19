@@ -124,6 +124,7 @@ public class CompetitionSingleton {
         } else {
             nextRange();
         }
+        setParticipantsCurrentRangeSeries();
     }
 
     public void previousSeries() {
@@ -135,6 +136,7 @@ public class CompetitionSingleton {
                 currentSeriesIndex = getRange(currentRangeIndex).getSeriesCount() - 1;
             }
         }
+        setParticipantsCurrentRangeSeries();
     }
 
     public void nextRange() {
@@ -142,6 +144,7 @@ public class CompetitionSingleton {
             currentRangeIndex++;
             currentSeriesIndex = 0;
         }
+        setParticipantsCurrentRangeSeries();
     }
 
     public void previousRange() {
@@ -149,7 +152,14 @@ public class CompetitionSingleton {
             currentRangeIndex--;
             currentSeriesIndex = 0;
         }
+        setParticipantsCurrentRangeSeries();
+    }
 
+    private void setParticipantsCurrentRangeSeries() {
+        for (Participant participant : participants) {
+            participant.setCurrentRangeScoreTable(currentRangeIndex);
+            participant.setCurrentSeriesScoreRow(currentSeriesIndex);
+        }
     }
 
     public String getParticipant(int matIndex, int positionIndex) {

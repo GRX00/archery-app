@@ -29,7 +29,8 @@
 
     <tbody>
     <%
-        for (int i = 1; i <= participantScoreDisplay.getCurrentSeriesNr(); i++) {
+        for (int i = 1; i <= participantScoreDisplay.getSeriesCount(); i++) {
+            if (i == participantScoreDisplay.getCurrentSeriesNr()) {
     %>
     <tr>
         <th scope="row" rowspan="2"><%=i%>
@@ -68,33 +69,44 @@
         </td>
     </tr>
     <%
-        }
-
-        for (int i = (participantScoreDisplay.getCurrentSeriesNr() + 1); i <= participantScoreDisplay.getSeriesCount(); i++) {
+    } else {
     %>
     <tr>
-        <th scope="row" rowspan="2"><%=i%></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <th scope="row" rowspan="2"><%=i%>
+        </th>
+        <td><%=participantScoreDisplay.getScoreForSeriesForPosition(i, 1)%>
+        </td>
+        <td><%=participantScoreDisplay.getScoreForSeriesForPosition(i, 2)%>
+        </td>
+        <td><%=participantScoreDisplay.getScoreForSeriesForPosition(i, 3)%>
+        </td>
+        <td><%=participantScoreDisplay.getFirstRowSumForSeries(i)%>
+        </td>
         <td colspan="2" class="crossed"/>
     </tr>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%=participantScoreDisplay.getScoreForSeriesForPosition(i, 4)%>
+        </td>
+        <td><%=participantScoreDisplay.getScoreForSeriesForPosition(i, 5)%>
+        </td>
+        <td><%=participantScoreDisplay.getScoreForSeriesForPosition(i, 6)%>
+        </td>
+        <td><%=participantScoreDisplay.getSecondRowSumForSeries(i)%>
+        </td>
+        <td><%=participantScoreDisplay.getSumForSeries(i)%>
+        </td>
+        <td><%=participantScoreDisplay.getAccumulatedSumForSeries(i)%>
+        </td>
     </tr>
     <%
+            }
         }
     %>
     <tr>
         <td colspan="4" class="A1"/>
         <th colspan="2">Razem</th>
-        <td><%=participantScoreDisplay.getAccumulatedSumForSeries(participantScoreDisplay.getSeriesCount())%></td>
+        <td><%=participantScoreDisplay.getAccumulatedSum()%>
+        </td>
     </tr>
 
     </tbody>

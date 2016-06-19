@@ -37,6 +37,7 @@ public class Participant {
     public void setCurrentRangeScoreTable(int currentRangeIndex) {
         this.currentRangeIndex = currentRangeIndex;
         this.currentRangeScoreTable = scoreTables.get(currentRangeIndex);
+        currentRangeScoreTable.setCurrentSeries(0);
     }
 
     public ScoreTable getCurrentRangeScoreTable() {
@@ -57,5 +58,9 @@ public class Participant {
         for (int i = this.scoreTables.size(); i < ranges.size(); i++) {
             this.scoreTables.add(new ScoreTable(ranges.get(i)));
         }
+    }
+
+    public void setCurrentSeriesScoreRow(int currentSeriesIndex) {
+        this.currentRangeScoreTable.setCurrentSeries(currentSeriesIndex);
     }
 }

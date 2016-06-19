@@ -61,7 +61,13 @@ public class Series {
         int sum = 0;
         for (int i = indexFrom; i < indexTo; i++) {
             if (series[i] != null) {
-                sum += series[i];
+                switch (series[i]) {
+                    case 11: sum+=10;
+                        break;
+                    default: sum += series[i];
+                        break;
+                }
+
             }
         }
         return sum;

@@ -66,4 +66,8 @@ public class ScoreTable {
         assert(seriesNr > 0 && seriesNr <= this.series.length);
         return this.series[seriesNr - 1];
     }
+
+    public Integer getAccumulatedSum() {
+        return getAccumulatedSeriesSum(series.length);
+    }
 }
