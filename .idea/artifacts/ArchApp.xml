@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="ArchApp">
-    <output-path>$PROJECT_DIR$/out/artifacts/ArchApp</output-path>
-    <root id="archive" name="ArchApp.war">
-      <element id="artifact" artifact-name="ArchApp exploded" />
-    </root>
-  </artifact>
-</component>
