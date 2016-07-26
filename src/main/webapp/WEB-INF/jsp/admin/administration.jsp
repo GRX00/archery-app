@@ -1,5 +1,6 @@
 <%@ page import="pl.grx.archapp.controller.CompetitionDisplay" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>ArcheryApp - Administration</title>
@@ -11,7 +12,7 @@
 
 <body>
 <%
-    CompetitionDisplay competitionDisplay = new CompetitionDisplay();
+    CompetitionDisplay competitionDisplay = new CompetitionDisplay(request);
 %>
 <div id="clickCather" hidden onclick="hideAllLists()"></div>
 <div class="container">

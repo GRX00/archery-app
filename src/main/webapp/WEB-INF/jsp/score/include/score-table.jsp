@@ -2,7 +2,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    ParticipantScoreDisplay participantScoreDisplay = new ParticipantScoreDisplay(participantName);
+    ParticipantScoreDisplay participantScoreDisplay = new ParticipantScoreDisplay(request, participantName);
 %>
 <h1>Nagroda RobinHooda</h1>
 <h3>Data: <%=participantScoreDisplay.getDate()%>
@@ -11,7 +11,7 @@
     <thead>
     <tr>
         <td colspan="2" class="smallLabel">
-            imię nazwisko
+            Imię Nazwisko
         </td>
         <td colspan="5">
             <%=participantName%>

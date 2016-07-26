@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <listener>
+        <listener-class>pl.grx.archapp.servlets.ArchAppContextListener</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>indexServlet</servlet-name>
         <servlet-class>pl.grx.archapp.servlets.IndexServlet</servlet-class>

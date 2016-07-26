@@ -1,9 +1,17 @@
 package pl.grx.archapp.controller;
 
-import pl.grx.archapp.CompetitionSingleton;
+import pl.grx.archapp.Competition;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 public class CompetitionDisplay {
-    private CompetitionSingleton competition = CompetitionSingleton.getInstance();
+    private final Competition competition;
+
+    public CompetitionDisplay(HttpServletRequest request) {
+        ServletContext servletContext = request.getSession().getServletContext();
+        this.competition = (Competition) servletContext.getAttribute("competition");
+    }
 
     public String getRangesCount() {
         return String.valueOf(competition.getRangesSize());

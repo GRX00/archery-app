@@ -1,9 +1,10 @@
 package pl.grx.archapp.servlets;
 
-import pl.grx.archapp.CompetitionSingleton;
+import pl.grx.archapp.Competition;
 import pl.grx.archapp.controller.CounterState;
 import pl.grx.archapp.model.CounterData;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,9 @@ public class CounterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CompetitionSingleton competition = CompetitionSingleton.getInstance();
+        ServletContext servletContext = request.getSession().getServletContext();
+        Competition competition = (Competition) servletContext.getAttribute("competition");
+
         CounterData counterData = competition.getCurrentRangeCounterData();
         CounterState counterState = competition.getCounterState();
         String responseData = "ready";

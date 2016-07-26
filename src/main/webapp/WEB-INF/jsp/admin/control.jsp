@@ -1,4 +1,3 @@
-<%@ page import="pl.grx.archapp.CompetitionSingleton" %>
 <%@ page import="pl.grx.archapp.controller.ControlDisplay" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -9,7 +8,7 @@
 <body>
 
 <%
-    ControlDisplay controlDisplay = new ControlDisplay();
+    ControlDisplay controlDisplay = new ControlDisplay(request);
 %>
 
 <div class="alignCenter">

@@ -1,10 +1,12 @@
 package pl.grx.archapp.controller;
 
-import pl.grx.archapp.CompetitionSingleton;
+import pl.grx.archapp.Competition;
 import pl.grx.archapp.model.CounterData;
 import pl.grx.archapp.model.Range;
 import pl.grx.archapp.model.SeriesArrows;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.Format;
@@ -15,8 +17,9 @@ public class RangeDisplay {
 
     private final Range range;
 
-    public RangeDisplay(int rangeNr) {
-        CompetitionSingleton competition = CompetitionSingleton.getInstance();
+    public RangeDisplay(HttpServletRequest request, int rangeNr) {
+        ServletContext servletContext = request.getSession().getServletContext();
+        Competition competition = (Competition) servletContext.getAttribute("competition");
         range = competition.getRange(rangeNr - 1);
     }
 

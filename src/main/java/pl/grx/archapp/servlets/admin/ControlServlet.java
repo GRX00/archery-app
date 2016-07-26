@@ -1,7 +1,8 @@
 package pl.grx.archapp.servlets.admin;
 
-import pl.grx.archapp.CompetitionSingleton;
+import pl.grx.archapp.Competition;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,8 @@ public class ControlServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CompetitionSingleton competition = CompetitionSingleton.getInstance();
+        ServletContext servletContext = request.getServletContext();
+        Competition competition = (Competition) servletContext.getAttribute("competition");
 
         if (request.getParameter("command").equals("start")) {
             competition.startSeries();

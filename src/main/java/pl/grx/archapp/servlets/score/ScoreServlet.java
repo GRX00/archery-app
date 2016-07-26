@@ -1,9 +1,10 @@
 package pl.grx.archapp.servlets.score;
 
-import pl.grx.archapp.CompetitionSingleton;
+import pl.grx.archapp.Competition;
 import pl.grx.archapp.model.Mat;
 import pl.grx.archapp.model.Participant;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,9 @@ public class ScoreServlet extends HttpServlet {
         if (matNr == null) {
             address = request.getContextPath()+"/index";
         } else {
-            CompetitionSingleton competition = CompetitionSingleton.getInstance();
+            ServletContext servletContext = request.getSession().getServletContext();
+            Competition competition = (Competition) servletContext.getAttribute("competition");
+
             Mat mat = competition.getMat(matNr-1);
             address = request.getContextPath()+"/WEB-INF/jsp/score/score.jsp";
             request.setAttribute("participantNameA", mat.getParticipant(0));
@@ -43,7 +46,8 @@ public class ScoreServlet extends HttpServlet {
         String matQuery = "";
         Enumeration parameters = request.getParameterNames();
 
-        CompetitionSingleton competition = CompetitionSingleton.getInstance();
+        ServletContext servletContext = request.getSession().getServletContext();
+        Competition competition = (Competition) servletContext.getAttribute("competition");
 
         while (parameters.hasMoreElements()) {
             String parameter = parameters.nextElement().toString();

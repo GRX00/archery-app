@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CompetitionSingleton {
+public class Competition {
     private List<Range> ranges = new ArrayList<>();
     private List<Mat> mats = new ArrayList<>();
     private List<Participant> participants = new ArrayList<>();
@@ -19,19 +19,7 @@ public class CompetitionSingleton {
 
     private CounterState counterState;
 
-    private static CompetitionSingleton instance = null;
-
-    public static boolean isFirstRun() {
-        return instance == null;
-    }
-    public static CompetitionSingleton getInstance() {
-        if(instance == null) {
-            instance = new CompetitionSingleton();
-        }
-        return instance;
-    }
-
-    private CompetitionSingleton() {
+    public Competition() {
         ranking = new Ranking(participants);
         counterState = new CounterState();
 

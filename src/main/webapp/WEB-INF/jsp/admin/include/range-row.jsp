@@ -5,7 +5,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    RangeDisplay rangeDisplay = new RangeDisplay(rangeNr);
+    RangeDisplay rangeDisplay = new RangeDisplay(request, rangeNr);
     CounterDataDisplay counterDisplay = new CounterDataDisplay(rangeDisplay);
 %>
 <tr>

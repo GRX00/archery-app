@@ -1,10 +1,10 @@
 package pl.grx.archapp.servlets.admin;
 
-import pl.grx.archapp.CompetitionSingleton;
 import pl.grx.archapp.controller.CompetitionDisplay;
 import pl.grx.archapp.controller.CounterDataDisplay;
 import pl.grx.archapp.controller.RangeDisplay;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +17,8 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CompetitionSingleton competition = CompetitionSingleton.getInstance();
+        ServletContext servletContext = request.getSession().getServletContext();
+        servletContext.setAttribute("configured", true);
 
         request.getRequestDispatcher(request.getContextPath()+"/WEB-INF/jsp/admin/administration.jsp")
                 .forward(request, response);
@@ -25,10 +26,10 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CompetitionDisplay competitionDisplay = new CompetitionDisplay();
+        CompetitionDisplay competitionDisplay = new CompetitionDisplay(request);
 
         for (int rangeNr = 1; rangeNr <= competitionDisplay.getRangesCountNr(); rangeNr++) {
-            RangeDisplay rangeDisplay = new RangeDisplay(rangeNr);
+            RangeDisplay rangeDisplay = new RangeDisplay(request, rangeNr);
             CounterDataDisplay counterDisplay = new CounterDataDisplay(rangeDisplay);
             String paramName = String.valueOf(rangeNr) + ':';
 

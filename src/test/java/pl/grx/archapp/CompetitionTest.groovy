@@ -2,9 +2,9 @@ package pl.grx.archapp
 
 import spock.lang.Specification
 
-class CompetitionSingletonTest extends Specification {
+class CompetitionTest extends Specification {
 
-//    def competitionSingleton = Mock(CompetitionSingleton) {
+//    def competitionSingleton = Mock(Competition) {
 //        getCounterState() >> null
 //    }
 

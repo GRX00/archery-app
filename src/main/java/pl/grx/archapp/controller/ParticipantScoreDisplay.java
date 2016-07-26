@@ -1,18 +1,23 @@
 package pl.grx.archapp.controller;
 
-import pl.grx.archapp.CompetitionSingleton;
+import pl.grx.archapp.Competition;
 import pl.grx.archapp.model.Participant;
 import pl.grx.archapp.model.score.ScoreTable;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 
 public class ParticipantScoreDisplay {
-    private CompetitionSingleton competition = CompetitionSingleton.getInstance();
+    private final Competition competition;
     private final Participant participant;
     private final ScoreTable currentRangeScoreTable;
 
-    public ParticipantScoreDisplay(String participantName) {
+    public ParticipantScoreDisplay(HttpServletRequest request, String participantName) {
+        ServletContext servletContext = request.getSession().getServletContext();
+        this.competition = (Competition) servletContext.getAttribute("competition");
+
         participant = competition.getParticipant(participantName);
         currentRangeScoreTable = participant.getCurrentRangeScoreTable();
     }
