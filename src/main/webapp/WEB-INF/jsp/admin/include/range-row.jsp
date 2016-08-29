@@ -1,25 +1,25 @@
-<%@ page import="pl.grx.archapp.controller.CounterDataDisplay" %>
-<%@ page import="pl.grx.archapp.controller.RangeDisplay" %>
-<%@ page import="pl.grx.archapp.model.SeriesArrows" %>
-<%@ page import="pl.grx.archapp.model.SeriesSequence" %>
+<%@ page import="pl.grx.archapp.displayhelper.CounterDataDisplayHelper" %>
+<%@ page import="pl.grx.archapp.displayhelper.RangeDisplayHelper" %>
+<%@ page import="pl.grx.archapp.model.enums.SeriesArrows" %>
+<%@ page import="pl.grx.archapp.model.enums.SeriesSequence" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    RangeDisplay rangeDisplay = new RangeDisplay(request, rangeNr);
-    CounterDataDisplay counterDisplay = new CounterDataDisplay(rangeDisplay);
+    RangeDisplayHelper rangeDisplayHelper = new RangeDisplayHelper(request, rangeNr);
+    CounterDataDisplayHelper counterDisplay = new CounterDataDisplayHelper(rangeDisplayHelper);
 %>
 <tr>
     <th><%=rangeNr%>
     </th>
-    <td><input class="cell" type="text" name="<%=rangeNr%>:date" value="<%=rangeDisplay.getDate()%>"/></td>
+    <td><input class="cell" type="text" name="<%=rangeNr%>:date" value="<%=rangeDisplayHelper.getDate()%>"/></td>
     <td><input class="cell" type="text" name="<%=rangeNr%>:rangeDescription"
-               value="<%=rangeDisplay.getDescription()%>"/></td>
-    <td><input class="cell" type="number" name="<%=rangeNr%>:seriesCount" value="<%=rangeDisplay.getSeriesCount()%>">
+               value="<%=rangeDisplayHelper.getDescription()%>"/></td>
+    <td><input class="cell" type="number" name="<%=rangeNr%>:seriesCount" value="<%=rangeDisplayHelper.getSeriesCount()%>">
     </td>
     <td>
         <select name="<%=rangeNr%>:seriesArrows">
             <% for (SeriesArrows seriesArrows : SeriesArrows.values()) { %>
-            <option value="<%=seriesArrows.getValue()%>" <%=rangeDisplay.isSelectedSeriesArrows(seriesArrows)%>>
+            <option value="<%=seriesArrows.getValue()%>" <%=rangeDisplayHelper.isSelectedSeriesArrows(seriesArrows)%>>
                 <%=seriesArrows.getDescription()%>
             </option>
             <% } %>

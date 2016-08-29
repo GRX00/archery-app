@@ -1,26 +1,21 @@
-package pl.grx.archapp.controller;
+package pl.grx.archapp.displayhelper;
 
-import pl.grx.archapp.Competition;
-import pl.grx.archapp.model.CounterData;
+import pl.grx.archapp.model.counter.CounterData;
 import pl.grx.archapp.model.Range;
-import pl.grx.archapp.model.SeriesArrows;
+import pl.grx.archapp.model.enums.SeriesArrows;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class RangeDisplay {
+public class RangeDisplayHelper {
 
     private final Range range;
 
-    public RangeDisplay(HttpServletRequest request, int rangeNr) {
-        ServletContext servletContext = request.getSession().getServletContext();
-        Competition competition = (Competition) servletContext.getAttribute("competition");
-        range = competition.getRange(rangeNr - 1);
+    public RangeDisplayHelper(Range range) {
+        this.range = range;
     }
 
     public CounterData getCounterData() {

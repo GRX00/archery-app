@@ -16,10 +16,10 @@
     <td class="positionNameCell">
         <div class="cellContainer">
             <input class="cell" type="text" name="<%=rowNr%>:nameA" 
-                   value="<%=competitionDisplay.getParticipantName(rowNr, 0)%>"
+                   value="<%=adminDisplayHelper.getParticipantName(rowNr, 0)%>"
                    ondblclick="toggleList(this)">
             <ul class="dropdown" hidden>
-                <% for(String participantName : competitionDisplay.getParticipantsNames()) { %>
+                <% for(String participantName : adminDisplayHelper.getParticipantsNames()) { %>
                 <li onclick="selectItemOnList(this)"><%=participantName%></li>
                 <% } %>
             </ul>
@@ -32,10 +32,10 @@
     <td class="positionNameCell">
         <div class="cellContainer">
             <input class="cell" type="text" name="<%=rowNr%>:nameB"
-                   value="<%=competitionDisplay.getParticipantName(rowNr, 1)%>"
+                   value="<%=adminDisplayHelper.getParticipantName(rowNr, 1)%>"
                    ondblclick="toggleList(this)">
             <ul class="dropdown" hidden>
-                <% for(String participantName : competitionDisplay.getParticipantsNames()) { %>
+                <% for(String participantName : adminDisplayHelper.getParticipantsNames()) { %>
                 <li onclick="selectItemOnList(this)"><%=participantName%></li>
                 <% } %>
             </ul>
@@ -48,10 +48,10 @@
     <td class="positionNameCell">
         <div class="cellContainer">
             <input class="cell" type="text" name="<%=rowNr%>:nameC"
-                   value="<%=competitionDisplay.getParticipantName(rowNr, 2)%>"
+                   value="<%=adminDisplayHelper.getParticipantName(rowNr, 2)%>"
                    ondblclick="toggleList(this)">
             <ul class="dropdown" hidden>
-                <% for(String participantName : competitionDisplay.getParticipantsNames()) { %>
+                <% for(String participantName : adminDisplayHelper.getParticipantsNames()) { %>
                 <li onclick="selectItemOnList(this)"><%=participantName%></li>
                 <% } %>
             </ul>
@@ -64,10 +64,10 @@
     <td class="positionNameCell">
         <div class="cellContainer">
             <input class="cell" type="text" name="<%=rowNr%>:nameD"
-                   value="<%=competitionDisplay.getParticipantName(rowNr, 3)%>"
+                   value="<%=adminDisplayHelper.getParticipantName(rowNr, 3)%>"
                    ondblclick="toggleList(this)">
             <ul class="dropdown" hidden>
-                <% for(String participantName : competitionDisplay.getParticipantsNames()) { %>
+                <% for(String participantName : adminDisplayHelper.getParticipantsNames()) { %>
                 <li onclick="selectItemOnList(this)"><%=participantName%></li>
                 <% } %>
             </ul>

@@ -1,4 +1,4 @@
-package pl.grx.archapp.model;
+package pl.grx.archapp.model.enums;
 
 public enum SeriesSequence {
     A(new int[]{1}, "A"),

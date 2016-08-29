@@ -1,4 +1,4 @@
-package pl.grx.archapp.model;
+package pl.grx.archapp.model.enums;
 
 import java.util.HashMap;
 import java.util.Map;

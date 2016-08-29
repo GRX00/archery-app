@@ -1,4 +1,4 @@
-package pl.grx.archapp.utils;
+package pl.grx.archapp.model.utils;
 
 public class Uid {
     private static int current = 0;

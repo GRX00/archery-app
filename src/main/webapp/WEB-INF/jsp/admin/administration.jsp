@@ -1,4 +1,5 @@
-<%@ page import="pl.grx.archapp.controller.CompetitionDisplay" %>
+<%@ page import="pl.grx.archapp.Admin" %>
+<%@ page import="pl.grx.archapp.displayhelper.AdminDisplayHelper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -12,7 +13,8 @@
 
 <body>
 <%
-    CompetitionDisplay competitionDisplay = new CompetitionDisplay(request);
+    Admin admin = (Admin) request.getServletContext().getAttribute("admin");
+    AdminDisplayHelper adminDisplayHelper = admin.getAdminDisplayHelper();
 %>
 <div id="clickCather" hidden onclick="hideAllLists()"></div>
 <div class="container">
@@ -20,7 +22,7 @@
         <fieldset>
             <div>
                 <label for="rangesNr">Liczba Odległości:</label>
-                <input type="number" name="rangesNr" id="rangesNr" value="<%=competitionDisplay.getRangesCount()%>"><br>
+                <input type="number" name="rangesNr" id="rangesNr" value="<%=adminDisplayHelper.getRangesCount()%>"><br>
             </div>
 
             <table>
@@ -41,7 +43,7 @@
 
                 <tbody>
                 <%
-                    for (int rangeNr = 1; rangeNr <= competitionDisplay.getRangesCountNr(); rangeNr++) {
+                    for (int rangeNr = 1; rangeNr <= adminDisplayHelper.getRangesCountNr(); rangeNr++) {
                 %>
                 <%@include file="/WEB-INF/jsp/admin/include/range-row.jsp" %>
                 <%
@@ -57,7 +59,7 @@
         <fieldset>
             <div>
                 <label for="matsNr">Liczba Mat:</label>
-                <input type="number" name="matsNr" id="matsNr" value="<%=competitionDisplay.getMatsCount()%>"><br>
+                <input type="number" name="matsNr" id="matsNr" value="<%=adminDisplayHelper.getMatsCount()%>"><br>
             </div>
 
             <table>
@@ -71,7 +73,7 @@
 
                 <tbody>
                 <%
-                    for (int rowNr = 1; rowNr <= competitionDisplay.getMatsCountNr(); rowNr++) {
+                    for (int rowNr = 1; rowNr <= adminDisplayHelper.getMatsCountNr(); rowNr++) {
                 %>
                 <%@include file="/WEB-INF/jsp/admin/include/mats-row.jsp" %>
                 <%
@@ -87,9 +89,6 @@
     </form>
 </div>
 
-<%--<script type="text/javascript">--%>
-    <%--var participants = JSON.parse('<%=competitionDisplay.getParticipantsJSON()%>');--%>
-<%--</script>--%>
 <script src="js/administration.js"></script>
 </body>
 </html>

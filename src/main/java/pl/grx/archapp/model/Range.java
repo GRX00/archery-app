@@ -1,22 +1,24 @@
 package pl.grx.archapp.model;
 
+import pl.grx.archapp.model.counter.CounterData;
+import pl.grx.archapp.model.score.SeriesSettings;
+
 import java.util.Date;
 
 public class Range {
+    private final SeriesSettings seriesSettings;
+    private final CounterData counterData;
     private String description;
-    private int seriesCount;
-    private int arrowsInSeries;
     private Date date;
-    private CounterData counterData;
 
-    public Range(Date date) {
+    public Range(Date date,
+                 String description,
+                 SeriesSettings seriesSettings,
+                 CounterData counterData) {
         this.date = date;
-        this.description = "30 m";
-        this.seriesCount = 6;
-        this.arrowsInSeries = 6;
-        this.counterData = new CounterData();
-        counterData.setTimer(4, 0);
-        counterData.setSequence(SeriesSequence.ABAB);
+        this.description = description;
+        this.seriesSettings = seriesSettings;
+        this.counterData = counterData;
     }
 
     public Date getDate() {
@@ -28,30 +30,30 @@ public class Range {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public CounterData getCounterData() {
+        return this.counterData;
+    }
+
     public int getSeriesCount() {
-        return seriesCount;
+        return this.seriesSettings.getSeriesCount();
     }
 
     public int getArrowsInSeries() {
-        return arrowsInSeries;
+        return this.seriesSettings.getArrowsInSeries();
     }
 
-    public void setArrowsInSeries(int arrowsInSeries) {
-        this.arrowsInSeries = arrowsInSeries;
+    public void setSeriesCount(Integer seriesCount) {
+        this.seriesSettings.setSeriesCount(seriesCount);
     }
 
-    public CounterData getCounterData() {
-        return counterData;
-    }
-
-    public void setSeriesCount(int seriesCount) {
-        this.seriesCount = seriesCount;
+    public void setArrowsInSeries(Integer arrowsInSeries) {
+        this.seriesSettings.setArrowsInSeries(arrowsInSeries);
     }
 }

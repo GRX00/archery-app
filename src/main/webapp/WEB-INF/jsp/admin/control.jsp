@@ -1,4 +1,5 @@
-<%@ page import="pl.grx.archapp.controller.ControlDisplay" %>
+<%@ page import="pl.grx.archapp.Control" %>
+<%@ page import="pl.grx.archapp.displayhelper.ControlDisplayHelper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,7 +9,8 @@
 <body>
 
 <%
-    ControlDisplay controlDisplay = new ControlDisplay(request);
+    Control control = (Control) request.getServletContext().getAttribute("control");
+    ControlDisplayHelper controlDisplayHelper = control.getControlDisplayHelper();
 %>
 
 <div class="alignCenter">
@@ -33,7 +35,7 @@
                 <input type="hidden" name="command" value="seriesPrevious">
                 <button type="submit">&nbsp;<&nbsp;</button>
             </form>
-            <span><%=controlDisplay.getCurrentSeries()%></span>
+            <span><%=controlDisplayHelper.getCurrentSeriesNumber()%></span>
             <form action="control" method="POST">
                 <input type="hidden" name="command" value="seriesNext">
                 <button type="submit">&nbsp;>&nbsp;</button>
@@ -47,7 +49,7 @@
                 <input type="hidden" name="command" value="rangePrevious">
                 <button type="submit">&nbsp;<&nbsp;</button>
             </form>
-            <span><%=controlDisplay.getCurrentRange()%></span>
+            <span><%=controlDisplayHelper.getCurrentRangeNumber()%></span>
             <form action="control" method="POST">
                 <input type="hidden" name="command" value="rangeNext">
                 <button type="submit">&nbsp;>&nbsp;</button>

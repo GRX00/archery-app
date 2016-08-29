@@ -1,6 +1,4 @@
-package pl.grx.archapp.controller;
-
-import pl.grx.archapp.model.CounterData;
+package pl.grx.archapp.model.counter;
 
 public class CounterState {
     private Boolean counterStarted = true;
@@ -9,7 +7,7 @@ public class CounterState {
     private int counter;
 
     public void setCounter(CounterData rangeCounterData) {
-        counter = rangeCounterData.getPrepareTimeSec() + rangeCounterData.getSeriesTimeSec();
+        counter = rangeCounterData.getPrepareTime() + rangeCounterData.getSeriesTime();
     }
 
     public void setCounter(int counter) {

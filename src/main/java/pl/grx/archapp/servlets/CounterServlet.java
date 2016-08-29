@@ -1,8 +1,6 @@
 package pl.grx.archapp.servlets;
 
-import pl.grx.archapp.Competition;
-import pl.grx.archapp.controller.CounterState;
-import pl.grx.archapp.model.CounterData;
+import pl.grx.archapp.Counter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -15,43 +13,17 @@ public class CounterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/jsp/counter.jsp").forward(request, response);
+        ServletContext servletContext = request.getSession().getServletContext();
+
+        Counter counter = (Counter) servletContext.getAttribute("counter");
+        counter.doGet(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = request.getSession().getServletContext();
-        Competition competition = (Competition) servletContext.getAttribute("competition");
 
-        CounterData counterData = competition.getCurrentRangeCounterData();
-        CounterState counterState = competition.getCounterState();
-        String responseData = "ready";
-
-        if (request.getParameter("checkControl") != null) {
-            int counter = Integer.valueOf(request.getParameter("counter"));
-            if (counterState.isCounterStarted()) {
-                counterState.setCounter(counter);
-                if (counterState.isCounterFinished()) {
-                    responseData = "stop";
-                } else {
-                    responseData = "start";
-                }
-            }
-        } else if (request.getParameter("getTimerValues") != null) {
-            StringBuilder stringBuilder = new StringBuilder();
-            responseData = stringBuilder.append("{")
-                    .append("\"seriesTimeSec\":").append(counterData.getSeriesTimeSec()).append(",")
-                    .append("\"prepareTimeSec\":").append(counterData.getPrepareTimeSec()).append(",")
-                    .append("\"yellowTimeSec\":").append(counterData.getYellowTimeSec()).append(",")
-                    .append("\"redTimeSec\":").append(counterData.getRedTimeSec()).append(",")
-                    .append("\"currentCounter\":").append(counterState.getCounter())
-                    .append("}")
-                    .toString();
-        } else if (request.getParameter("finished") != null) {
-            counterState.finishCounter();
-        }
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(responseData);
+        Counter counter = (Counter) servletContext.getAttribute("counter");
+        counter.doPost(request, response);
     }
 }

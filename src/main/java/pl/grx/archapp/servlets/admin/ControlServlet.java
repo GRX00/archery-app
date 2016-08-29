@@ -1,6 +1,6 @@
 package pl.grx.archapp.servlets.admin;
 
-import pl.grx.archapp.Competition;
+import pl.grx.archapp.Control;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,29 +13,17 @@ public class ControlServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/jsp/admin/control.jsp").forward(request, response);
+        ServletContext servletContext = request.getSession().getServletContext();
+
+        Control control = (Control) servletContext.getAttribute("admin");
+        control.doGet(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServletContext servletContext = request.getServletContext();
-        Competition competition = (Competition) servletContext.getAttribute("competition");
+        ServletContext servletContext = request.getSession().getServletContext();
 
-        if (request.getParameter("command").equals("start")) {
-            competition.startSeries();
-        } else if (request.getParameter("command").equals("stop")) {
-            competition.finishSeries();
-        } else if (request.getParameter("command").equals("reset")) {
-            competition.resetSeries();
-        } else if (request.getParameter("command").equals("seriesNext")) {
-            competition.nextSeries();
-        } else if (request.getParameter("command").equals("seriesPrevious")) {
-            competition.previousSeries();
-        } else if (request.getParameter("command").equals("rangeNext")) {
-            competition.nextRange();
-        } else if (request.getParameter("command").equals("rangePrevious")) {
-            competition.previousRange();
-        }
-        request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/jsp/admin/control.jsp").forward(request, response);
+        Control control = (Control) servletContext.getAttribute("admin");
+        control.doPost(request, response);
     }
 }

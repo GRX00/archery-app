@@ -1,33 +1,33 @@
-package pl.grx.archapp.controller;
+package pl.grx.archapp.displayhelper;
 
-import pl.grx.archapp.model.CounterData;
-import pl.grx.archapp.model.SeriesSequence;
+import pl.grx.archapp.model.counter.CounterData;
+import pl.grx.archapp.model.enums.SeriesSequence;
 
-public class CounterDataDisplay {
+public class CounterDataDisplayHelper {
     private final CounterData counterData;
 
-    public CounterDataDisplay(RangeDisplay rangeDisplay) {
-        counterData = rangeDisplay.getCounterData();
+    public CounterDataDisplayHelper(CounterData counterData) {
+        this.counterData = counterData;
     }
 
     public String getSeriesTimeMinutes() {
-        return getTimeMinutes(counterData.getSeriesTimeSec());
+        return getTimeMinutes(counterData.getSeriesTime());
     }
 
     public String getSeriesTimeSeconds() {
-        return getTimeSeconds(counterData.getSeriesTimeSec());
+        return getTimeSeconds(counterData.getSeriesTime());
     }
 
     public void setSeriesTime(String seriesTimeMinutes, String seriesTimeSeconds) {
-        counterData.setTimer(Integer.valueOf(seriesTimeMinutes), Integer.valueOf(seriesTimeSeconds));
+        counterData.setSeriesTime(Integer.valueOf(seriesTimeMinutes), Integer.valueOf(seriesTimeSeconds));
     }
 
     public String getPrepareTimeMinutes() {
-        return getTimeMinutes(counterData.getPrepareTimeSec());
+        return getTimeMinutes(counterData.getPrepareTime());
     }
 
     public String getPrepareTimeSeconds() {
-        return getTimeSeconds(counterData.getPrepareTimeSec());
+        return getTimeSeconds(counterData.getPrepareTime());
     }
 
     public void setPrepareTime(String seriesTimeMinutes, String seriesTimeSeconds) {
@@ -35,11 +35,11 @@ public class CounterDataDisplay {
     }
 
     public String getYellowTimeMinutes() {
-        return getTimeMinutes(counterData.getYellowTimeSec());
+        return getTimeMinutes(counterData.getYellowTime());
     }
 
     public String getYellowTimeSeconds() {
-        return getTimeSeconds(counterData.getYellowTimeSec());
+        return getTimeSeconds(counterData.getYellowTime());
     }
 
     public void setYellowTime(String seriesTimeMinutes, String seriesTimeSeconds) {
@@ -47,11 +47,11 @@ public class CounterDataDisplay {
     }
 
     public String getRedTimeMinutes() {
-        return getTimeMinutes(counterData.getRedTimeSec());
+        return getTimeMinutes(counterData.getRedTime());
     }
 
     public String getRedTimeSeconds() {
-        return getTimeSeconds(counterData.getRedTimeSec());
+        return getTimeSeconds(counterData.getRedTime());
     }
 
     public void setRedTime(String seriesTimeMinutes, String seriesTimeSeconds) {

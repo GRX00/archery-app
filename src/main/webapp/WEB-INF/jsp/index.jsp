@@ -1,3 +1,4 @@
+<%@ page import="pl.grx.archapp.Index" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,9 +8,9 @@
 <body>
 
 <%
-    Integer matsNr = (Integer) request.getAttribute("matsNr");
+    Index index = (Index) request.getServletContext().getAttribute("index");
 
-    for (int i = 1; i <= matsNr; i++) {
+    for (int i = 1; i <= index.getMatsCount(); i++) {
 %>
 <form action="score" method="GET">
     <div class="alignCenter">

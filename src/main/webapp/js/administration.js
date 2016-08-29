@@ -36,7 +36,6 @@ function hideAllLists() {
     }
 }
 
-
 function selectItemOnList(item) {
     var list = item.parentElement;
     var input = list.parentElement.firstElementChild;
