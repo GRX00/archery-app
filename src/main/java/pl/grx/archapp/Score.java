@@ -46,10 +46,12 @@ public class Score {
             String parameterValue = request.getParameter(parameter);
 
             if (parameter.equals("m")) {
-                matQuery = "?m="+request.getParameter("m");
+                matQuery = "?m="+parameterValue;
                 continue;
             }
 
+            // parameter with participantName and scoreIndex in format:
+            // score%scoreIndex:participantName
             String participantName = extractParticipantName(parameter);
             Integer index = extractScoreIndex(parameter);
             Participant participant = participants.getParticipantByName(participantName);
@@ -65,15 +67,16 @@ public class Score {
         response.sendRedirect(request.getContextPath()+"/score"+matQuery);
     }
 
-    private Integer extractScoreIndex(String parameter) {
-        int percentPos = parameter.indexOf('%')+1;
-        int colonPos = parameter.indexOf(':');
-        return Integer.parseInt(parameter.substring(percentPos, colonPos)) - 1;
-    }
-
     private String extractParticipantName(String parameter) {
         int colonPos = parameter.indexOf(':')+1;
         return parameter.substring(colonPos);
+    }
+
+    private Integer extractScoreIndex(String parameter) {
+        int percentPos = parameter.indexOf('%')+1;
+        int colonPos = parameter.indexOf(':');
+        String indexString = parameter.substring(percentPos, colonPos);
+        return Integer.parseInt(indexString) - 1;
     }
 
     public Participant getParticipant(int matNumber, int positionIndex) {
