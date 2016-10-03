@@ -1,0 +1,151 @@
+html{
+    min-height:100%;
+    position:relative;
+}
+
+div.container {
+    max-width: 1200px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+div {
+    padding: 10px 0 10px 0;
+}
+
+fieldset {
+    margin-bottom: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+}
+
+th {
+    background-color:#e0e0e0;
+    padding: 5px;
+}
+
+tbody th {
+    width: 25px;
+}
+
+td {
+    width: 50px;
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid;
+    height: 30px;
+}
+
+div.buttonHolder {
+    text-align: center;
+}
+
+button {
+    font-size: larger;
+}
+
+.A1 {
+    border: none;
+    background-color: inherit;
+}
+
+input[type='number'] {
+    text-align: center;
+    width: 50px;
+}
+
+.cell {
+    width: 100%;
+    border: none;
+    text-align: center;
+}
+
+.stretch {
+    width: 1000px;
+}
+
+.positionNameCell {
+    text-align: left;
+}
+
+.cellContainer {
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown {
+    width: 100%;
+    max-height: 200px;
+    z-index: 991;
+    position: absolute;
+    border-bottom: 1px solid gray;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dropdown li {
+    border: 1px solid gray;
+    border-bottom: none;
+    background: white;
+    text-align: center;
+}
+
+.dropdown li:hover {
+    background-color: whitesmoke;
+}
+
+#clickCather {
+    z-index: 990;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background-color: gray;
+    opacity: 0.5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.time {
+    padding: 0;
+}
+
+.time input {
+    width: 22px;
+    text-align: right;
+}
+
+input, textarea, select{
+    font-family: inherit;
+    white-space: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    font-variant: inherit;
+    font-style: inherit;
+}
+
+span.noBrake {
+    white-space: nowrap;
+}
+
+/* hide input up-down buttons*/
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/**/
